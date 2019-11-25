@@ -52,8 +52,8 @@ public class SipServer implements CommandLineRunner {
                     .channel(NioDatagramChannel.class)
                     .option(ChannelOption.SO_BROADCAST,true)
                     .handler(new SipHandler());
-            ChannelFuture future = bootstrap.bind("192.168.6.201",5060).sync();
-            System.out.println("5060 netty 启动完成");
+            ChannelFuture future = bootstrap.bind("192.168.6.201",5080).sync();
+            System.out.println("5080 netty 启动完成");
             future.channel().closeFuture().await();
         }catch (Exception e ){
         }

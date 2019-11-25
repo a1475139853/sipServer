@@ -40,11 +40,13 @@ public class SipHandler extends SimpleChannelInboundHandler<DatagramPacket> {
         System.out.println(s);
         if(s.contains("CSeq: 1")){
             String res = responseHandle1(headers);
+            System.out.println(res);
             InetSocketAddress inetSocketAddress = new InetSocketAddress("192.168.6.94",5060);
             DatagramPacket datagramPacket1 = new DatagramPacket(Unpooled.wrappedBuffer(res.getBytes()), inetSocketAddress);
             channelHandlerContext.writeAndFlush(datagramPacket1);
         }else if("2 REGISTER".equals(headers.get("CSeq").trim())){
             String res = responseHandle2(headers);
+            System.out.println(res);
             InetSocketAddress inetSocketAddress = new InetSocketAddress("192.168.6.94",5060);
             DatagramPacket datagramPacket1 = new DatagramPacket(Unpooled.wrappedBuffer(res.getBytes()), inetSocketAddress);
             channelHandlerContext.writeAndFlush(datagramPacket1);
@@ -52,27 +54,43 @@ public class SipHandler extends SimpleChannelInboundHandler<DatagramPacket> {
             System.out.println("认证成功");
             if(b) {
                 WriteMessageToSIP.Call_ID = headers.get("Call-ID");
-//                String res =
-//                        "MESSAGE sip:iccsid@192.168.6.201:5060 SIP/2.0" + "\n" +
-//                                "To: <sip:iccsid@192.168.6.201:5060>" + "\n" +
-//                                "Content-Length: " + Constants.content.length() + "\n" +
-//                                "CSeq: " + headers.get("CSeq") + "\n" +
-//                                "Call-ID: " + headers.get("Call-ID") + "\n" +
-//                                "Via: " + headers.get("Via") + "\n" +
-//                                "From: " + headers.get("From") + "\n" +
-//                                "Content-Type: Application/MANSCDP+xml" + "\n" +
-//                                "Max-Forwards: 70\n" + "\n" +
-//                                Constants.content;
-//
-//                InetSocketAddress inetSocketAddress = new InetSocketAddress("192.168.6.201", 5061);
-//                DatagramPacket datagramPacket1 = new DatagramPacket(Unpooled.wrappedBuffer("请求Invite".getBytes()), inetSocketAddress);
-//                channelHandlerContext.writeAndFlush(datagramPacket1);
-                Timer.b = true;
+                String res =
+                        "MESSAGE sip:C5-07-D2@192.168.6.97:5060 SIP/2.0" + "\n" +
+                                "To: <sip:C5-07-D2@192.168.6.97:5060>" + "\n" +
+                                "Content-Length: " + Constants.enlarge.length() + "\n" +
+                                "CSeq: " + headers.get("CSeq") + "\n" +
+                                "Call-ID: " + headers.get("Call-ID") + "\n" +
+                                "Via: " + headers.get("Via") + "\n" +
+                                "From: <sip:C5-07-D2@192.168.6.97:5060>"+ "\n" +
+                                "Content-Type: Application/MANSCDP+xml" + "\n" +
+                                "Max-Forwards: 70\n" + "\n" +
+                                Constants.enlarge;
+                String res2 =
+                        "MESSAGE sip:C5-07-D2@192.168.6.97:5060 SIP/2.0" + "\n" +
+                                "To: <sip:C5-07-D2@192.168.6.97:5060>" + "\n" +
+                                "Content-Length: " + Constants.stop.length() + "\n" +
+                                "CSeq: " + headers.get("CSeq") + "\n" +
+                                "Call-ID: " + headers.get("Call-ID") + "\n" +
+                                "Via: " + headers.get("Via") + "\n" +
+                                "From: <sip:C5-07-D2@192.168.6.97:5060>"+ "\n" +
+                                "Content-Type: Application/MANSCDP+xml" + "\n" +
+                                "Max-Forwards: 70\n" + "\n" +
+                                Constants.stop;
+
+
+                InetSocketAddress inetSocketAddress = new InetSocketAddress("192.168.6.94", 5060);
+                System.out.println(res);
+                DatagramPacket datagramPacket1 = new DatagramPacket(Unpooled.wrappedBuffer(res.getBytes()), inetSocketAddress);
+                channelHandlerContext.writeAndFlush(datagramPacket1);
+                DatagramPacket datagramPacket2 = new DatagramPacket(Unpooled.wrappedBuffer(res.getBytes()), inetSocketAddress);
+                channelHandlerContext.writeAndFlush(datagramPacket2);
+              // Timer.b = true;
                 b=false;
                 Thread.sleep(5000);
             }
 
         }else if(split[0].contains("SIP/2.0 200 OK")){
+            Timer.b=false;
 //            System.out.println(headers.get("Content-Length").length());
 //            if(headers.get("Content-Length").equals("0")){
 //                WriteMessageToSIP.to=headers.get("To");
@@ -86,20 +104,28 @@ public class SipHandler extends SimpleChannelInboundHandler<DatagramPacket> {
 //            else{
 //                System.out.println("invite返回: "+s);
 //            }
-            if (headers.get("CSeq").contains("INVITE5")){
+            if (headers.get("CSeq").contains("INVITE1")){
                 if(a){
                     Timer.b=false;
+//                    String res =
+//                            "ACK sip:C5-07-D2@192.168.6.96:5060 SIP/2.0" + "\n" +
+//                                    "To: "+headers.get("To")+"\n"+
+//                                    "Content-Length: "+0+"\n"+
+//                                    "CSeq: 20 ACK"+"\n"+
+//                                    "Call-ID: "+ headers.get("Call-ID")+"\n"+
+//                                    "Via: "+headers.get("Via")+"\n"+
+//                                    "From: "+headers.get("From")+"\n"+
+//                                    "Max-Forwards: 70" + "\r\n";//注意这里的\r\n都要，否则传不到sip客户端
                     String res =
-                            "ACK sip:C5-07-D2@192.168.6.94:5060 SIP/2.0" + "\n" +
-                                    "To: <sip:C5-07-D2@192.168.6.94:5060>\n"+
+                            "ACK sip:34020000001320000001@3402000000 SIP/2.0" + "\n" +
+                                    "To: "+headers.get("To")+"\n"+
                                     "Content-Length: "+0+"\n"+
-                                    "CSeq: 1 ACK"+"\n"+
-                                    "Call-ID: "+ UUID.randomUUID().toString().replace("-","")+"\n"+
-                                    "Via: SIP/2.0/UDP 192.168.6.201:5060;rport;branch=z9hG4bK1730298036"+"\n"+
-                                    "From: <sip:iccsid@192.168.6.201:5060>;tag=1087979339\n"+
-                                    "Content-Type: application/sdp"+"\n"+
-                                    "Max-Forwards: 70" + "\n";
-                    InetSocketAddress inetSocketAddress = new InetSocketAddress("192.168.6.94",5060);
+                                    "CSeq: 20 ACK"+"\n"+
+                                    "Call-ID: "+ headers.get("Call-ID")+"\n"+
+                                    "Via: "+headers.get("Via")+"\n"+
+                                    "From: "+headers.get("From")+"\n"+
+                                    "Max-Forwards: 70" + "\r\n";//注意这里的\r\n都要，否则传不到sip客户端
+                    InetSocketAddress inetSocketAddress = new InetSocketAddress("192.168.6.97",5060);
                     DatagramPacket datagramPacket1 = new DatagramPacket(Unpooled.wrappedBuffer(res.getBytes()), inetSocketAddress);
                     channelHandlerContext.writeAndFlush(datagramPacket1);
                     a = false;
