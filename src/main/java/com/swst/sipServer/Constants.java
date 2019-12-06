@@ -66,11 +66,9 @@ public class Constants {
             "s=Play\n" +
             "c=IN IP4 192.168.6.201\n" +
             "t=0 0\n" +
-            "m=video 5061 RTP/AVP 96 98 97\n" +
+            "m=video 5062 RTP/AVP 96\n" +
             "a=recvonly\n" +
-            "a=rtpmap:96 PS/90000\n" +
-            "a=rtpmap:98 H264/90000\n" +
-            "a=rtpmap:97 MPEG4/90000\n" +
+            "a=rtpmap:96 H264/90000\n" +
             "y=0100000001\n" +
             "f=\n";
 }

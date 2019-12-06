@@ -21,7 +21,7 @@ public class Timer implements Runnable{
     public static boolean b = false;
 
     public  void startTask(ChannelHandlerContext ctx,String res){
-        InetSocketAddress inetSocketAddress = new InetSocketAddress("192.168.6.97", 5060);
+        InetSocketAddress inetSocketAddress = new InetSocketAddress("192.168.6.94", 5060);
         DatagramPacket datagramPacket1 = new DatagramPacket(Unpooled.wrappedBuffer(res.getBytes()), inetSocketAddress);
         System.out.println(res);
         ctx.writeAndFlush(datagramPacket1);
@@ -31,16 +31,16 @@ public class Timer implements Runnable{
         if(b){
             System.out.println("开始发送");
             String res =
-                    "INVITE sip:34020000001320000001@3402000000 SIP/2.0" + "\n" +
-                            "To: <sip:34020000001320000001@3402000000>\n"+
+                    "INVITE sip:C5-07-D2@192.168.6.94 SIP/2.0" + "\n" +
+                            "To: <sip:C5-07-D2@192.168.6.94>\n"+
                             "Content-Length: "+ Constants.actureTime.length()+"\n"+
-                            "Contact: <sip:34020000002000000001@192.168.6.201:5060>"+"\n"+
+                            "Contact: <sip:iccsid@192.168.6.201:5060>"+"\n"+
                             "CSeq: 20 INVITE"+"\n"+
                             "Call-ID: "+ UUID.randomUUID().toString().replace("-","")+"\n"+
                             "Via: SIP/2.0/UDP 192.168.6.201:5060;rport;branch=z9hG4bK1730298036"+"\n"+
-                            "From: <sip:34020000002000000001@3402000000>;tag=1087979339\n"+
+                            "From: <sip:iccsid@192.168.6.201>;tag=1087979339\n"+
                             "Content-Type: Application/SDP"+"\n"+
-                            "Subject: 34020000001320000001:0,34020000002000000001:0"+"\n"+
+                            "Subject: C5-07-D2:0,iccsid:0"+"\n"+
                             "Max-Forwards: 70" + "\n" +"\n"+Constants.actureTime;
 
             startTask(WriteMessageToSIP.ctx,res);

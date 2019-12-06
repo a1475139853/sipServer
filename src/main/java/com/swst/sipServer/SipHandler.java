@@ -84,7 +84,7 @@ public class SipHandler extends SimpleChannelInboundHandler<DatagramPacket> {
                 channelHandlerContext.writeAndFlush(datagramPacket1);
                 DatagramPacket datagramPacket2 = new DatagramPacket(Unpooled.wrappedBuffer(res.getBytes()), inetSocketAddress);
                 channelHandlerContext.writeAndFlush(datagramPacket2);
-              // Timer.b = true;
+               Timer.b = true;
                 b=false;
                 Thread.sleep(5000);
             }
@@ -104,7 +104,8 @@ public class SipHandler extends SimpleChannelInboundHandler<DatagramPacket> {
 //            else{
 //                System.out.println("invite返回: "+s);
 //            }
-            if (headers.get("CSeq").contains("INVITE1")){
+            if (headers.get("CSeq").contains("INVITE")){
+
                 if(a){
                     Timer.b=false;
 //                    String res =
@@ -117,7 +118,7 @@ public class SipHandler extends SimpleChannelInboundHandler<DatagramPacket> {
 //                                    "From: "+headers.get("From")+"\n"+
 //                                    "Max-Forwards: 70" + "\r\n";//注意这里的\r\n都要，否则传不到sip客户端
                     String res =
-                            "ACK sip:34020000001320000001@3402000000 SIP/2.0" + "\n" +
+                            "ACK sip:C5-07-D2@192.168.6.94 SIP/2.0" + "\n" +
                                     "To: "+headers.get("To")+"\n"+
                                     "Content-Length: "+0+"\n"+
                                     "CSeq: 20 ACK"+"\n"+
@@ -125,11 +126,12 @@ public class SipHandler extends SimpleChannelInboundHandler<DatagramPacket> {
                                     "Via: "+headers.get("Via")+"\n"+
                                     "From: "+headers.get("From")+"\n"+
                                     "Max-Forwards: 70" + "\r\n";//注意这里的\r\n都要，否则传不到sip客户端
-                    InetSocketAddress inetSocketAddress = new InetSocketAddress("192.168.6.97",5060);
+                    InetSocketAddress inetSocketAddress = new InetSocketAddress("192.168.6.94",5060);
                     DatagramPacket datagramPacket1 = new DatagramPacket(Unpooled.wrappedBuffer(res.getBytes()), inetSocketAddress);
                     channelHandlerContext.writeAndFlush(datagramPacket1);
                     a = false;
                 }
+
             }
         }
 
