@@ -2,15 +2,17 @@ package com.swst.videoServer;
 
 import com.swst.rtphandle.Parse;
 import com.swst.rtphandle.RtpH264Parse;
+import com.swst.websocket.ChannelManage;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.DatagramPacket;
+import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.*;
+import java.net.InetSocketAddress;
 
 import static java.util.Arrays.copyOfRange;
 
@@ -24,7 +26,6 @@ public class VideoHandle extends SimpleChannelInboundHandler<DatagramPacket> {
 //    File file = new File("/root/Desktop/test.mp4");
     private final String LOCK = "LOCK";
 //    FileOutputStream fileOutputStream = new FileOutputStream(file);
-    int k=0;
     boolean a = false;
 
     private static BufferedImage bufferedImage;
@@ -64,7 +65,6 @@ public class VideoHandle extends SimpleChannelInboundHandler<DatagramPacket> {
             ++i;
 
         }
-
         System.out.println("--------------------");
 
 //        if(WriteMessageToSIP.ctx == null){
@@ -74,6 +74,11 @@ public class VideoHandle extends SimpleChannelInboundHandler<DatagramPacket> {
 //            System.out.println(o.content().toString());
 //        }
         RtpH264Parse.handleNalHeader(bytes1);
+//        InetSocketAddress inetSocketAddress = new InetSocketAddress("192.168.6.201",1935);
+//            DatagramPacket datagramPacket1 = new DatagramPacket(Unpooled.wrappedBuffer(sipResponse.encode().getBytes()), inetSocketAddress);
+//        DatagramPacket datagramPacket1 = new DatagramPacket(o.content(), inetSocketAddress);
+
+//        channelHandlerContext.writeAndFlush(datagramPacket1);
 //        ByteArrayOutputStream bo = new ByteArrayOutputStream();
 //        ObjectOutputStream oo = new ObjectOutputStream(bo);
 //        oo.writeObject(o);

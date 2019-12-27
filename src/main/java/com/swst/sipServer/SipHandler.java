@@ -1,11 +1,12 @@
 package com.swst.sipServer;
 
+import com.swst.rtphandle.RtpH264Parse;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.DatagramPacket;
 import io.netty.util.CharsetUtil;
-import utils.WriteMessageToSIP;
+import com.swst.utils.WriteMessageToSIP;
 
 import java.math.BigInteger;
 import java.net.InetSocketAddress;
@@ -14,7 +15,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * @Auther: fregun
@@ -38,6 +38,8 @@ public class SipHandler extends SimpleChannelInboundHandler<DatagramPacket> {
             headers.put(split1[0].trim(),split1[1].trim());
         }
         System.out.println(s);
+//        RtpH264Parse.sb.append(s);
+//        RtpH264Parse.sb.append("a=fmtp:98 sprop-parameter-sets=");
         if(s.contains("CSeq: 1")){
             String res = responseHandle1(headers);
             System.out.println(res);

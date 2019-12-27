@@ -2,14 +2,10 @@ package com.swst.sipServer;
 
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.DatagramPacket;
-import io.netty.util.CharsetUtil;
-import utils.WriteMessageToSIP;
+import com.swst.utils.WriteMessageToSIP;
 
 import java.net.InetSocketAddress;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 /**

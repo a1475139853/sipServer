@@ -2,6 +2,7 @@ package com.swst.sipServer;
 
 import com.swst.sipServer.SipHandler;
 import com.swst.videoServer.VideoServer;
+import com.swst.websocket.WebsocketServer;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
@@ -34,6 +35,15 @@ public class SipServer implements CommandLineRunner {
             public void run() {
                 try {
                     new VideoServer().start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    new WebsocketServer().start();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
