@@ -4,65 +4,13 @@
     <option name="showDoc" value="false" />
     <option name="showLiveBeansGraph" value="false" />
   </component>
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/../livesip/src/main/java/com/swstsoft/livesip/web/service/device/DeviceService.java" description="public interface DeviceService extends IService&lt;De..." line="8" />
-    <bookmark url="file://$PROJECT_DIR$/../livesip/src/main/java/com/swstsoft/livesip/web/service/alarm/AlarmService.java" description="public interface AlarmService extends IService&lt;Ala..." line="6" />
-    <bookmark url="file://$PROJECT_DIR$/../livesip/src/main/java/com/swstsoft/livesip/sip/codec/Connection.java" line="55" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d262050-4af3-42bf-a2d6-83458958a35c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/controller/Controllerll.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/stream/ConvertVideoPakcet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/stream/PushStream.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/websocket/ChannelManage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/websocket/NioWebSocketHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/websocket/WebsocketServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/websocket/WebsocketServerInitialzer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/demo/flow-mux.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/demo/flow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/demo/flowjstest" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/demo/mux.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/demo/myflow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/demo/video-js.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/demo/video.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/demo/videojs-contrib-hls.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/demo/videojs-ie8.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/h264/Decoder.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/h264/Player.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/h264/YUVCanvas.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/h264.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/mse-rawh264.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/mse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="9d262050-4af3-42bf-a2d6-83458958a35c" name="Default Changelist" comment="udp 1500帧存一个文件">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swst/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swst/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/swst/rtphandle/RtpH264Parse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swst/rtphandle/RtpH264Parse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/swst/rtphandle/StreamSave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swst/rtphandle/StreamSave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/Timer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/Timer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoHandle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/WriteMessageToSIP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swst/utils/WriteMessageToSIP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/rtphandle/Parse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/rtphandle/Parse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/rtphandle/RtpH264Parse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/rtphandle/RtpH264Parse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/rtphandle/StreamSave.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/rtphandle/StreamSave.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/sipServer/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/sipServer/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/sipServer/InviteHandle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/sipServer/InviteHandle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipServer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipServer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipServer$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/sipServer/Timer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/sipServer/Timer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/videoServer/VideoHandle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/videoServer/VideoHandle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/videoServer/VideoServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/videoServer/VideoServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utils/WriteMessageToSIP.class" beforeDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
-    <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,82 +22,6 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/rtphandle/StreamSave.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="17" column="35" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/websocket/WebsocketServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="57" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/net/bramp/ffmpeg/ffmpeg/0.6.2/ffmpeg-0.6.2.jar!/net/bramp/ffmpeg/builder/FFmpegBuilder.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2718">
-              <caret line="169" column="43" selection-start-line="169" selection-start-column="43" selection-end-line="169" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="28" column="7" selection-start-line="28" selection-start-column="7" selection-end-line="32" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/rtphandle/RtpH264Parse.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="651">
-              <caret line="110" column="15" selection-start-line="110" selection-start-column="15" selection-end-line="111" selection-end-column="86" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="34" column="17" lean-forward="true" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoHandle.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="75" column="31" lean-forward="true" selection-start-line="75" selection-start-column="31" selection-end-line="75" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -182,228 +54,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/main/java/sipServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sipHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Application.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Constants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/Constants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/sipServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/sipHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/SipServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/VideoServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/SipHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/utils/WriteMessageToSIP.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/sipServer/InviteHandle.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/sipServer/Timer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/sipServer/H264.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/sipServer/Constants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/videoServer/test1.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/ps.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/rtphandle/rtp.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/rtphandle/Parse.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/rtphandle/MessageSave.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/stream/Streamgit.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/stream/PushStream.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/stream/ConvertVideoPakcet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/websocket/WebsocketServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipServer.java" />
-        <option value="$PROJECT_DIR$/app.yml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/Application.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/app.yml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/controller/Controller.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/demo/mse.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/demo/mse.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/mse.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/demo/flow.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/rtphandle/RtpH264Parse.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/websocket/NioWebSocketHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/mse-rawh264.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/h264/h264.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/controller/Controllerll.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/websocket/ChannelManage.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/h264.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoHandle.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/rtphandle/StreamSave.java" />
-      </list>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
     </option>
   </component>
-  <component name="MavenProjectNavigator">
-    <treeState>
-      <expand>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="sipServer" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="sipServer" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
-        </path>
-      </expand>
-      <select />
-    </treeState>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="662" />
-    <option name="y" value="111" />
-    <option name="width" value="960" />
-    <option name="height" value="789" />
-  </component>
+  <component name="ProjectId" id="1VYZ1wxV96NoHZI8406nX8HEcpx" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="swst" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="swst" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="swst" type="462c0819:PsiDirectoryNode" />
-              <item name="rtphandle" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="swst" type="462c0819:PsiDirectoryNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="swst" type="462c0819:PsiDirectoryNode" />
-              <item name="stream" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="swst" type="462c0819:PsiDirectoryNode" />
-              <item name="videoServer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="swst" type="462c0819:PsiDirectoryNode" />
-              <item name="websocket" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="h264" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
@@ -527,6 +186,7 @@
       <workItem from="1577359772485" duration="16000" />
       <workItem from="1577360013524" duration="5781000" />
       <workItem from="1577426398792" duration="1631000" />
+      <workItem from="1577431779618" duration="2476000" />
     </task>
     <task id="LOCAL-00001" summary="sip视屏点播与控制">
       <created>1573458274245</created>
@@ -552,52 +212,19 @@
     <option name="localTasksCounter" value="4" />
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="392034000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="28" width="1920" height="1052" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Image Layers" order="0" />
-      <window_info id="Capture Tool" order="1" />
-      <window_info id="UI Designer" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info id="Designer" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.7631285" visible="true" weight="0.31483456" />
-      <window_info id="Structure" order="6" sideWeight="0.23687151" side_tool="true" visible="true" weight="0.31483456" />
-      <window_info id="Web" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Docker" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5010672" side_tool="true" visible="true" weight="0.032432433" />
-      <window_info anchor="bottom" id="Database Changes" order="2" />
-      <window_info anchor="bottom" id="Messages" order="3" sideWeight="0.49893278" weight="0.17513514" />
-      <window_info anchor="bottom" id="Version Control" order="4" />
-      <window_info anchor="bottom" id="Terminal" order="5" />
-      <window_info anchor="bottom" id="Message" order="6" />
-      <window_info anchor="bottom" id="Find" order="7" weight="0.32864866" />
-      <window_info anchor="bottom" id="Run" order="8" weight="0.29621622" />
-      <window_info active="true" anchor="bottom" id="Debug" order="9" sideWeight="0.49893278" visible="true" weight="0.65081084" />
-      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="12" />
-      <window_info anchor="bottom" id="Spring" order="13" />
-      <window_info anchor="bottom" id="Java Enterprise" order="14" />
-      <window_info anchor="right" id="Palette" order="0" />
-      <window_info anchor="right" id="Capture Analysis" order="1" />
-      <window_info anchor="right" id="Mybatis datasource" order="2" side_tool="true" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="7" weight="0.2497332" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
-      <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.32977587" />
-      <window_info anchor="right" id="Maven" order="10" weight="0.32977587" />
-      <window_info anchor="right" id="Bean Validation" order="11" weight="0.32977587" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="sip视屏点播与控制" />
@@ -610,62 +237,47 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>jar://$MAVEN_REPOSITORY$/org/bytedeco/javacv/1.4.3/javacv-1.4.3.jar!/org/bytedeco/javacv/FFmpegFrameGrabber.class</url>
           <line>573</line>
-          <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/swst/rtphandle/Parse.java</url>
           <line>52</line>
-          <properties />
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/swst/rtphandle/Parse.java</url>
           <line>75</line>
-          <properties />
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/swst/stream/PushStream.java</url>
           <line>38</line>
-          <properties />
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/swst/rtphandle/RtpH264Parse.java</url>
-          <line>80</line>
-          <properties />
+          <line>81</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/swst/rtphandle/RtpH264Parse.java</url>
-          <line>77</line>
-          <properties />
+          <line>78</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/swst/websocket/NioWebSocketHandler.java</url>
           <line>52</line>
-          <properties />
           <option name="timeStamp" value="77" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/swst/websocket/NioWebSocketHandler.java</url>
           <line>92</line>
-          <properties />
           <option name="timeStamp" value="79" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/swst/websocket/NioWebSocketHandler.java</url>
           <line>51</line>
-          <properties />
           <option name="timeStamp" value="80" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/swst/rtphandle/StreamSave.java</url>
-          <line>57</line>
-          <properties />
-          <option name="timeStamp" value="88" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -678,397 +290,6 @@
     <SUITE FILE_PATH="coverage/sipServer$Application.ic" NAME="Application Coverage Results" MODIFIED="1575451418527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.swst.sipServer.*</FILTER>
     </SUITE>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.2.2.RELEASE/spring-web-5.2.2.RELEASE.jar!/org/springframework/web/filter/OncePerRequestFilter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.29/tomcat-embed-core-9.0.29.jar!/org/apache/catalina/core/ApplicationFilterChain.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.29/tomcat-embed-core-9.0.29.jar!/org/apache/catalina/core/StandardWrapperValve.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="296" selection-start-line="296" selection-end-line="296" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.29/tomcat-embed-core-9.0.29.jar!/org/apache/catalina/core/StandardContextValve.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.29/tomcat-embed-core-9.0.29.jar!/org/apache/catalina/authenticator/AuthenticatorBase.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="326" selection-start-line="326" selection-end-line="326" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.29/tomcat-embed-core-9.0.29.jar!/org/apache/catalina/core/StandardHostValve.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.29/tomcat-embed-core-9.0.29.jar!/org/apache/catalina/valves/ErrorReportValve.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="67" selection-start-line="67" selection-end-line="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.29/tomcat-embed-core-9.0.29.jar!/org/apache/catalina/core/StandardEngineValve.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.29/tomcat-embed-core-9.0.29.jar!/org/apache/catalina/connector/CoyoteAdapter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="436" selection-start-line="436" selection-end-line="436" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/9.0.29/tomcat-embed-core-9.0.29.jar!/org/apache/coyote/http11/Http11Processor.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="224" selection-start-line="224" selection-end-line="224" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/demo/video-js.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/demo/flow-mux.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.2.2.RELEASE/spring-web-5.2.2.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1494">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/demo/videojs-ie8.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1" selection-start-column="1" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/utils/WriteMessageToSIP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/sipServer/InviteHandle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.34.Final/netty-all-4.1.34.Final.jar!/io/netty/buffer/Unpooled.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.34.Final/netty-all-4.1.34.Final.jar!/io/netty/handler/codec/http/websocketx/TextWebSocketFrame.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="e#521#522#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/demo/flow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1023">
-          <caret line="833" column="43" selection-start-line="833" selection-start-column="43" selection-end-line="833" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/mse-rawh264.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="45" column="46" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/mse.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="48" column="18" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/websocket/ChannelManage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" column="32" lean-forward="true" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
-          <folding>
-            <element signature="e#716#717#0" expanded="true" />
-            <element signature="e#763#764#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/demo/video.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1867">
-          <caret line="10278" column="5" lean-forward="true" selection-start-line="10278" selection-start-column="5" selection-end-line="10278" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-57">
-          <caret line="17164" column="4" selection-start-line="17164" selection-start-column="4" selection-end-line="17164" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/h264/Player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1758">
-          <caret line="173" column="20" selection-start-line="173" selection-start-column="20" selection-end-line="173" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/demo/myflow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12744" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/controller/Controllerll.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/h264/YUVCanvas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3438">
-          <caret line="211" column="56" selection-start-line="211" selection-start-column="56" selection-end-line="211" selection-end-column="56" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/h264.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1422">
-          <caret line="79" column="19" selection-start-line="79" selection-start-column="19" selection-end-line="79" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.34.Final/netty-all-4.1.34.Final.jar!/io/netty/handler/codec/http/websocketx/BinaryWebSocketFrame.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/bytedeco/ffmpeg/4.1.3-1.5.1/ffmpeg-4.1.3-1.5.1-sources.jar!/org/bytedeco/ffmpeg/global/avcodec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="266" column="4" selection-start-line="266" selection-start-column="4" selection-end-line="266" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/bytedeco/javacv/1.5.1/javacv-1.5.1.jar!/org/bytedeco/javacv/FrameRecorder.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-          <folding>
-            <element signature="e#6332#6333#0" expanded="true" />
-            <element signature="e#6376#6377#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/bytedeco/ffmpeg/4.1.3-1.5.1/ffmpeg-4.1.3-1.5.1-sources.jar!/org/bytedeco/ffmpeg/global/avformat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="1727" column="38" selection-start-line="1727" selection-start-column="38" selection-end-line="1727" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/bytedeco/javacv/1.5.1/javacv-1.5.1.jar!/org/bytedeco/javacv/FFmpegFrameGrabber.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="634" column="16" selection-start-line="634" selection-start-column="16" selection-end-line="634" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/jcodec/jcodec/0.2.5/jcodec-0.2.5.jar!/org/jcodec/common/AudioFormat.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="104" column="11" selection-start-line="104" selection-start-column="11" selection-end-line="104" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/bytedeco/javacv/1.5.1/javacv-1.5.1.jar!/org/bytedeco/javacv/Frame.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="239" column="30" selection-start-line="239" selection-start-column="24" selection-end-line="239" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/bytedeco/javacv/1.5.1/javacv-1.5.1.jar!/org/bytedeco/javacv/FFmpegFrameRecorder.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="859" column="35" lean-forward="true" selection-start-line="859" selection-start-column="35" selection-end-line="859" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.34.Final/netty-all-4.1.34.Final.jar!/io/netty/channel/AbstractChannelHandlerContext.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="313" selection-start-line="313" selection-end-line="313" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.34.Final/netty-all-4.1.34.Final.jar!/io/netty/channel/SimpleChannelInboundHandler.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/websocket/NioWebSocketHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/net/bramp/ffmpeg/ffmpeg/0.6.2/ffmpeg-0.6.2.jar!/net/bramp/ffmpeg/builder/FFmpegOutputBuilder.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="41" column="14" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
-          <folding>
-            <element signature="e#1430#1431#0" expanded="true" />
-            <element signature="e#1464#1465#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///opt/jdk1.8/src.zip!/java/net/URI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="587" column="37" lean-forward="true" selection-start-line="587" selection-start-column="37" selection-end-line="587" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/net/bramp/ffmpeg/ffmpeg/0.6.2/ffmpeg-0.6.2.jar!/net/bramp/ffmpeg/builder/FFmpegBuilder.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2718">
-          <caret line="169" column="43" selection-start-line="169" selection-start-column="43" selection-end-line="169" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="28" column="7" selection-start-line="28" selection-start-column="7" selection-end-line="32" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/websocket/WebsocketServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="57" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="34" column="17" lean-forward="true" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoHandle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="75" column="31" lean-forward="true" selection-start-line="75" selection-start-column="31" selection-end-line="75" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/rtphandle/RtpH264Parse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="110" column="15" selection-start-line="110" selection-start-column="15" selection-end-line="111" selection-end-column="86" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/rtphandle/StreamSave.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="17" column="35" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
   </component>
   <component name="masterDetails">
     <states>

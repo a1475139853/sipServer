@@ -45,6 +45,7 @@ public class RtpH264Parse {
         byte []byte1 = new byte[header.length+bytes1.length];
         System.arraycopy(header,0,byte1,0,header.length);
         System.arraycopy(bytes1,0,byte1,byte1.length-bytes1.length,bytes1.length);
+        int frame = 0 ;
         switch (bytes[12]&0xff){
             case SPS :
             StreamSave.handleStream(byte1,false);break;
