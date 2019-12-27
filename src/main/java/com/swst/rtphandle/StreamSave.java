@@ -19,21 +19,36 @@ import java.util.Date;
  */
 public class StreamSave {
     public static int TIME = 1500;//表示每个文件存储帧数
-    static File file = new File("/root/Desktop/" + new Date().getTime() + ".h264");
-    public static FileOutputStream fileOutputStream;
-    public static InputStream inputStream;
-    public static ServerSocket serverSocket;
-
-    public static void handleStream(byte[] bytes, boolean last) throws IOException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        File myPath = new File(System.getProperty("user.home") + sdf.format(new Date()));
+    static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+    static File myPath;
+    static {
+        myPath = new File(System.getProperty("user.home")  + File.separator + sdf.format(new Date()));
         if (!myPath.exists()) {//若此目录不存在，则创建之// 这个东西只能简历一级文件夹，两级是无法建立的。。。。。
             myPath.mkdir();
             System.out.println("创建文件夹路径为：" + myPath);
         }
+    }
+    public static FileOutputStream fileOutputStream;
+    public static InputStream inputStream;
+    static File file;
+
+    public static void handleStream(byte[] bytes, boolean last) throws IOException {
+        myPath = new File(System.getProperty("user.home")+ File.separator + sdf.format(new Date()));
+        if (!myPath.exists()) {//若此目录不存在，则创建之// 这个东西只能简历一级文件夹，两级是无法建立的。。。。。
+            myPath.mkdir();
+            System.out.println("创建文件夹路径为：" + myPath);
+        }
+        if(file == null){
+            file = new File(myPath.getPath() + File.separator + new Date().getTime() + ".h264");
+            System.out.println("创建文件路径为：" + file.getPath());
+        }
+
+        if(!file.exists())
+            file.createNewFile();
         if (TIME == 0) {
             TIME = 1500;
-            file = new File(myPath.getPath() + new Date().getTime() + ".h264");
+            file = new File(myPath.getPath() + File.separator  + new Date().getTime() + ".h264");
+            file.createNewFile();
         }
         try {
             fileOutputStream = new FileOutputStream(file);
