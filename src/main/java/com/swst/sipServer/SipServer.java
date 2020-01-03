@@ -1,6 +1,5 @@
 package com.swst.sipServer;
 
-import com.swst.sipServer.SipHandler;
 import com.swst.videoServer.VideoServer;
 import com.swst.websocket.WebsocketServer;
 import io.netty.bootstrap.Bootstrap;
@@ -21,8 +20,6 @@ import org.springframework.stereotype.Component;
 public class SipServer implements CommandLineRunner {
 
 
-
-
     public void run(String... args) throws Exception {
         System.out.println("启动了");
         new Thread(new Timer()).start();
@@ -34,12 +31,18 @@ public class SipServer implements CommandLineRunner {
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    new VideoServer().start();
+                    new VideoServer(5061,5067).start();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
+/*        for (int i = 5061; i < 5066; i++) {
+            final int port = i;
+            new Thread(new VideoServer(port)).start();
+        }*/
+
         new Thread(new Runnable() {
             public void run() {
                 try {
@@ -51,7 +54,8 @@ public class SipServer implements CommandLineRunner {
         }).start();
 
     }
-    private void start(){
+
+    private void start() {
         EventLoopGroup boss = new NioEventLoopGroup();
         EventLoopGroup work = new NioEventLoopGroup();
 
@@ -60,14 +64,13 @@ public class SipServer implements CommandLineRunner {
 
             bootstrap.group(boss)
                     .channel(NioDatagramChannel.class)
-                    .option(ChannelOption.SO_BROADCAST,true)
+                    .option(ChannelOption.SO_BROADCAST, true)
                     .handler(new SipHandler());
-            ChannelFuture future = bootstrap.bind("192.168.6.153",5060).sync();
+            ChannelFuture future = bootstrap.bind("192.168.6.153", 5060).sync();
             System.out.println("5060 netty 启动完成");
             future.channel().closeFuture().await();
-        }catch (Exception e ){
-        }
-        finally {
+        } catch (Exception e) {
+        } finally {
             //释放线程池资源
             boss.shutdownGracefully();
             work.shutdownGracefully();
