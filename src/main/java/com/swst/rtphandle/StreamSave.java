@@ -41,6 +41,12 @@ public class StreamSave {
         if(file == null){
             file = new File(myPath.getPath() + File.separator + new Date().getTime() + ".h264");
             System.out.println("创建文件路径为：" + file.getPath());
+            try {
+                fileOutputStream = new FileOutputStream(file);
+                inputStream = new FileInputStream(file);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
 
         if(!file.exists())
@@ -49,13 +55,14 @@ public class StreamSave {
             TIME = 1500;
             file = new File(myPath.getPath() + File.separator  + new Date().getTime() + ".h264");
             file.createNewFile();
+            try {
+                fileOutputStream = new FileOutputStream(file);
+                inputStream = new FileInputStream(file);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
-        try {
-            fileOutputStream = new FileOutputStream(file);
-            inputStream = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+
 
         /**
          * 调用ffmpegAPI
