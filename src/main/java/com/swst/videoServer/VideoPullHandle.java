@@ -8,6 +8,7 @@ import io.netty.channel.socket.DatagramPacket;
 
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
+import java.net.InetSocketAddress;
 
 import static java.util.Arrays.copyOfRange;
 
@@ -23,16 +24,22 @@ public class VideoPullHandle extends SimpleChannelInboundHandler<DatagramPacket>
 //    FileOutputStream fileOutputStream = new FileOutputStream(file);
     boolean a = false;
 
-    private static BufferedImage bufferedImage;
+    private BufferedImage bufferedImage;
+
+    private RtpH264Parse rtpH264Parse = new RtpH264Parse();
 
     public VideoPullHandle() throws FileNotFoundException {
     }
 
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, DatagramPacket o) throws Exception {
-        System.out.println("收到消息");
         int i= 0;
         System.out.println("--------------------");
         ByteBuf content = o.content();
+        InetSocketAddress inetSocketAddress = (InetSocketAddress)o.sender();
+        String ip = inetSocketAddress.getAddress().getHostAddress();
+        int port = inetSocketAddress.getPort();
+        System.out.println("收到消息----------------"+ip + "++++++++" + port);
+        System.out.println(rtpH264Parse);
         byte[]bytes1 = new byte[content.readableBytes()];
         content.readBytes(bytes1);
         byte[] bytes = copyOfRange(bytes1,14,bytes1.length);
@@ -40,7 +47,7 @@ public class VideoPullHandle extends SimpleChannelInboundHandler<DatagramPacket>
             System.out.println();
             a = false;
         }
-        for (int j=0;j<bytes1.length;j++) {
+       /* for (int j=0;j<bytes1.length;j++) {
             String s = Integer.toHexString(0xFF & bytes1[j]);
 //            String s1 = Integer.toHexString(0xFF & bytes[j]);
             if(j==1 && s.equals("e3")){
@@ -59,10 +66,11 @@ public class VideoPullHandle extends SimpleChannelInboundHandler<DatagramPacket>
             }
             ++i;
 
-        }
+        }*/
         System.out.println("--------------------");
-        
-        RtpH264Parse.handleNalHeader(bytes1);
+        channelHandlerContext.channel().remoteAddress();
+        channelHandlerContext.channel().localAddress();
+        rtpH264Parse.handleNalHeader(bytes1,ip);
 
     }
 }

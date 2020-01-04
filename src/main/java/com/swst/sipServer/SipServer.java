@@ -36,25 +36,16 @@ public class SipServer implements CommandLineRunner {
     
     public void run(String... args) throws Exception {
         System.out.println("启动了");
-        new Thread(new Timer()).start();
+//        new Thread(new Timer()).start();
         new Thread(new Runnable() {
             public void run() {
-                SipServer.this.start();
+                start();
             }
         }).start();
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    new VideoServer().start();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-                    new WebsocketServer().start();
+                    new VideoServer(25061,25067).start();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -98,7 +89,6 @@ public class SipServer implements CommandLineRunner {
         }
         finally {
             //释放线程池资源
-            boss.shutdownGracefully();
             work.shutdownGracefully();
         }
     }

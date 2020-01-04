@@ -3,6 +3,8 @@ package com.swst.sipServer;
 import com.swst.domain.SDP;
 import com.swst.sipServer.codes.SipMessageEvent;
 import com.swst.utils.Generate;
+import com.swst.utils.ParseUtil;
+import com.swst.videoServer.PortSingleton;
 import gov.nist.javax.sip.address.SipUri;
 import gov.nist.javax.sip.header.Authorization;
 import gov.nist.javax.sip.header.RequestLine;
@@ -19,6 +21,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @Auther: fregun
@@ -169,10 +172,12 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
     }
     //处理不包含sdp的Invite信令请求消息
     public void handNoSdp(SipMessageEvent sipMessageEvent){
+        String unUseMap = PortSingleton.getInstance().getUnUseMap();
+        String[] split = unUseMap.split(",");
         //获取流接收端口和ip地址,这里暂时写死
-        int port = 5061;
-        String sdp = SDP.sdptop+port+SDP.sdpBottom;//构建ok消息
         SIPRequest message = (SIPRequest) sipMessageEvent.getMessage();
+        String sdp = new SDP().getV(ParseUtil.parseMessage(message.getTo().getAddress().toString()),
+                split[1],Integer.parseInt(split[0]),0,0);//构建ok消息
         SIPResponse response = message.createResponse(200);
         response.setToTag(Generate.generateTag());
         response.setMessageContent(sdp.getBytes());

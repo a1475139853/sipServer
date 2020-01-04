@@ -6,28 +6,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d262050-4af3-42bf-a2d6-83458958a35c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/domain/SDP.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/StreamSipHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/codes/AbstractConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/codes/Connection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/codes/DefaultSipMessageEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/codes/SessionFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/codes/SipMessageDatagramDecoder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/codes/SipMessageEncoder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/codes/SipMessageEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/codes/TcpConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/codes/UdpConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/utils/Generate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/utils/ParseUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/swst/videoServer/PortSingleton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swst/rtphandle/RtpH264Parse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swst/rtphandle/RtpH264Parse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/swst/rtphandle/StreamSave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swst/rtphandle/StreamSave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/StreamSipHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swst/sipServer/StreamSipHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoHandle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoPullHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoPullHandle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/rtphandle/RtpH264Parse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/rtphandle/RtpH264Parse.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/swst/rtphandle/StreamSave.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/rtphandle/StreamSave.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipServer$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipServer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipServer$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipServer$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipServer$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipServer$4.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/sipServer/SipServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/sipServer/StreamSipHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/sipServer/StreamSipHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/videoServer/VideoHandle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/videoServer/VideoHandle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/swst/videoServer/VideoServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swst/videoServer/VideoServer.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,22 +39,38 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="sipServer" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1890">
-              <caret line="130" column="46" selection-start-line="130" selection-start-column="46" selection-end-line="130" selection-end-column="46" />
+            <state relative-caret-position="456">
+              <caret line="106" column="37" lean-forward="true" selection-start-line="106" selection-start-column="37" selection-end-line="106" selection-end-column="37" />
+              <folding>
+                <element signature="e#1321#1322#0" expanded="true" />
+                <element signature="e#1360#1361#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/sipServer/StreamSipHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="49" column="64" selection-start-line="49" selection-start-column="64" selection-end-line="49" selection-end-column="64" />
+            <state relative-caret-position="2898">
+              <caret line="182" column="51" selection-start-line="182" selection-start-column="51" selection-end-line="182" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -66,10 +79,50 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/utils/ParseUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/utils/Generate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="9" column="21" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="21" />
+              <folding>
+                <element signature="e#180#181#0" expanded="true" />
+                <element signature="e#265#266#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/utils/WriteMessageToSIP.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/videoServer/PortSingleton.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/domain/SDP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2034">
-              <caret line="113" column="41" selection-start-line="113" selection-start-column="41" selection-end-line="113" selection-end-column="41" />
+            <state relative-caret-position="612">
+              <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -77,8 +130,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="22" column="28" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+            <state relative-caret-position="702">
+              <caret line="78" column="82" lean-forward="true" selection-start-line="78" selection-start-column="82" selection-end-line="78" selection-end-column="82" />
             </state>
           </provider>
         </entry>
@@ -129,9 +182,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/swst/sipServer/StreamSipHandle.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/swst/utils/Generate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipServer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/swst/videoServer/PortSingleton.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/swst/utils/ParseUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/swst/domain/SDP.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/swst/sipServer/StreamSipHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipServer.java" />
       </list>
     </option>
   </component>
@@ -197,6 +252,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="swst" type="462c0819:PsiDirectoryNode" />
+              <item name="rtphandle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="swst" type="462c0819:PsiDirectoryNode" />
               <item name="sipServer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -206,7 +270,34 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="swst" type="462c0819:PsiDirectoryNode" />
+              <item name="stream" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="swst" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="swst" type="462c0819:PsiDirectoryNode" />
+              <item name="videoServer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sipServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="swst" type="462c0819:PsiDirectoryNode" />
+              <item name="websocket" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sipServer" type="b2602c69:ProjectViewProjectNode" />
@@ -254,17 +345,20 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/swst/sipServer/codes" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/swst" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.swst.utils" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/templates" />
       <recent name="$PROJECT_DIR$/src/main/resources/static/" />
       <recent name="$PROJECT_DIR$/src/main/resources/static" />
       <recent name="$PROJECT_DIR$/src/main/resources/" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/java/com/swst/sipServer/codes" />
-      <recent name="$PROJECT_DIR$/src/main/resources" />
-      <recent name="$PROJECT_DIR$/src/main/java/com/swst" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -362,6 +456,9 @@
       <workItem from="1577426398792" duration="1631000" />
       <workItem from="1577431779618" duration="2476000" />
       <workItem from="1577955532659" duration="1805000" />
+      <workItem from="1578018358275" duration="4568000" />
+      <workItem from="1578122844893" duration="867000" />
+      <workItem from="1578125349927" duration="743000" />
     </task>
     <task id="LOCAL-00001" summary="sip视屏点播与控制">
       <created>1573458274245</created>
@@ -395,35 +492,34 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48659000" />
+    <option name="totallyTimeSpent" value="54837000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="28" width="1920" height="1052" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="Capture Tool" order="1" />
       <window_info id="UI Designer" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Favorites" order="3" sideWeight="0.108597286" side_tool="true" weight="0.25773746" />
       <window_info id="Designer" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.76216215" visible="true" weight="0.25827107" />
-      <window_info id="Structure" order="6" sideWeight="0.23783784" side_tool="true" visible="true" weight="0.25827107" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.8914027" visible="true" weight="0.26307365" />
+      <window_info id="Structure" order="6" sideWeight="0.24032257" side_tool="true" weight="0.25773746" />
       <window_info id="Web" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Docker" order="0" />
+      <window_info anchor="bottom" id="Docker" order="0" weight="0.32972974" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50213444" side_tool="true" weight="0.6724324" />
       <window_info anchor="bottom" id="Database Changes" order="2" />
       <window_info anchor="bottom" id="Messages" order="3" sideWeight="0.49893278" weight="0.17513514" />
       <window_info anchor="bottom" id="Version Control" order="4" sideWeight="0.4994664" weight="0.032432433" />
-      <window_info anchor="bottom" id="Terminal" order="5" />
+      <window_info anchor="bottom" id="Terminal" order="5" weight="0.32972974" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="Find" order="7" weight="0.32864866" />
       <window_info anchor="bottom" id="Run" order="8" weight="0.29621622" />
-      <window_info active="true" anchor="bottom" id="Debug" order="9" sideWeight="0.49786553" visible="true" weight="0.2508108" />
+      <window_info anchor="bottom" id="Debug" order="9" sideWeight="0.49786553" visible="true" weight="0.28324324" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="12" />
-      <window_info anchor="bottom" id="Spring" order="13" />
-      <window_info anchor="bottom" id="Java Enterprise" order="14" />
+      <window_info anchor="bottom" id="Spring" order="13" weight="0.32972974" />
+      <window_info anchor="bottom" id="Java Enterprise" order="14" weight="0.32972974" />
       <window_info anchor="right" id="Palette" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Mybatis datasource" order="2" side_tool="true" />
@@ -508,13 +604,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/swst/rtphandle/RtpH264Parse.java</url>
-          <line>81</line>
+          <line>82</line>
           <properties />
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/swst/rtphandle/RtpH264Parse.java</url>
-          <line>78</line>
+          <line>79</line>
           <properties />
           <option name="timeStamp" value="66" />
         </line-breakpoint>
@@ -621,13 +717,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="33" column="9" lean-forward="true" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/rtphandle/StreamSave.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
@@ -645,13 +734,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/utils/WriteMessageToSIP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -683,6 +765,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="38" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot/2.2.2.RELEASE/spring-boot-2.2.2.RELEASE.jar!/org/springframework/boot/SpringApplication.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-633">
+          <caret line="523" column="17" selection-start-line="523" selection-start-column="17" selection-end-line="523" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/videoServer/VideoServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/sipServer/StreamSipHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2898">
+          <caret line="182" column="51" selection-start-line="182" selection-start-column="51" selection-end-line="182" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/utils/ParseUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/utils/Generate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -694,43 +817,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/utils/WriteMessageToSIP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="38" selection-end-column="21" />
+        <state relative-caret-position="234">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipServer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/videoServer/PortSingleton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1890">
-          <caret line="130" column="46" selection-start-line="130" selection-start-column="46" selection-end-line="130" selection-end-column="46" />
+        <state relative-caret-position="342">
+          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/domain/SDP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2034">
-          <caret line="113" column="41" selection-start-line="113" selection-start-column="41" selection-end-line="113" selection-end-column="41" />
+        <state relative-caret-position="612">
+          <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="22" column="28" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+        <state relative-caret-position="702">
+          <caret line="78" column="82" lean-forward="true" selection-start-line="78" selection-start-column="82" selection-end-line="78" selection-end-column="82" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/sipServer/StreamSipHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/swst/sipServer/SipServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="49" column="64" selection-start-line="49" selection-start-column="64" selection-end-line="49" selection-end-column="64" />
+        <state relative-caret-position="456">
+          <caret line="106" column="37" lean-forward="true" selection-start-line="106" selection-start-column="37" selection-end-line="106" selection-end-column="37" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1321#1322#0" expanded="true" />
+            <element signature="e#1360#1361#0" expanded="true" />
           </folding>
         </state>
       </provider>
