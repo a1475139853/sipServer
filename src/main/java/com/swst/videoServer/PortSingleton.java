@@ -30,15 +30,15 @@ public class PortSingleton {
      * 添加刚分配的端口到已用端口
      * @return
      */
-    public Map<Integer,String> getUnUseMap(){
+    public String getUnUseMap(){
         Map<Integer,String> map1 = null;
         for (Map.Entry<Integer,String> map:this.unUseMap.entrySet()) {
             map1 = new HashMap<>();
             map1.put(map.getKey(),map.getValue());
             this.usedmap.put("",map1);
             this.unUseMap.remove(map.getKey());
-            return map1;
+            return map.getKey()+","+map.getValue();
         }
-        return map1;
+        return "";
     }
 }
