@@ -14,7 +14,7 @@ import java.util.Date;
  * @Description: Stream 流存储
  */
 public class StreamSave {
-    int TIME = 150;//表示每个文件存储帧数
+    int TIME = 100;//表示每个文件存储帧数
     SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
     SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat("yyyyMMddHHmmss");
     Date time = new Date();
@@ -27,7 +27,7 @@ public class StreamSave {
     {
         if (ip != null) {
             time = new Date();
-            firstPath = new File(System.getProperty("user.home") + File.separator + ip);
+            firstPath = new File(System.getProperty("user.home") + File.separator + "video" + File.separator + ip);
             if (!firstPath.exists()) {//若此目录不存在，则创建之// 这个东西只能简历一级文件夹，两级是无法建立的。。。。。
                 firstPath.mkdir();
                 System.out.println("创建文件夹路径为：" + firstPath);
@@ -52,7 +52,7 @@ public class StreamSave {
 
     public void handleStream(byte[] bytes, boolean last, String ip) throws IOException {
         if (ip != null) {
-            firstPath = new File(System.getProperty("user.home") + File.separator + ip);
+            firstPath = new File(System.getProperty("user.home") + File.separator + "video" + File.separator + ip);
             if (!firstPath.exists()) {//若此目录不存在，则创建之// 这个东西只能简历一级文件夹，两级是无法建立的。。。。。
                 firstPath.mkdir();
                 System.out.println("创建文件夹路径为：" + firstPath);
@@ -67,7 +67,7 @@ public class StreamSave {
                 thirdPath.mkdir();
                 System.out.println("创建文件夹路径为：" + thirdPath);
             }
-            if (last && new Date().getTime() - time.getTime() > 180000L) {
+            if (last && new Date().getTime() - time.getTime() > 1800000L) {
                 time = new Date();
                 thirdPath = new File(secondPath + File.separator + yyyyMMddHHmmss.format(time));
                 if (!thirdPath.exists()) {//若此目录不存在，则创建之// 这个东西只能简历一级文件夹，两级是无法建立的。。。。。
@@ -77,7 +77,7 @@ public class StreamSave {
             }
 
             if (file == null) {
-                file = new File(thirdPath.getPath() + File.separator + new Date().getTime() + ".h264");
+                file = new File(thirdPath.getPath() + File.separator + ip + "-" + new Date().getTime() + ".h264");
                 file.createNewFile();
                 System.out.println("创建文件路径为：" + file.getPath());
                 try {
@@ -92,8 +92,8 @@ public class StreamSave {
             if (!file.exists())
                 file.createNewFile();
             if (TIME == 0) {
-                TIME = 1500;
-                file = new File(thirdPath.getPath() + File.separator + new Date().getTime() + ".h264");
+                TIME = 100;
+                file = new File(thirdPath.getPath() + File.separator + ip + "-" + new Date().getTime() + ".h264");
                 file.createNewFile();
                 try {
                     fileOutputStream = new FileOutputStream(file);

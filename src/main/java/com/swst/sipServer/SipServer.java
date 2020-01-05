@@ -42,7 +42,16 @@ public class SipServer implements CommandLineRunner {
                 new SipServer().start();
             }
         }).start();
-        for(int i=25061;i<=25067;i++){
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    new VideoServer(25061,25067).start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+/*        for(int i=25061;i<=25067;i++){
             final int port = i;
             new Thread(new Runnable() {
                 public void run() {
@@ -53,7 +62,7 @@ public class SipServer implements CommandLineRunner {
                     }
                 }
             }).start();
-        }
+        }*/
 
 
     }
