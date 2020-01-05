@@ -83,7 +83,7 @@ public class VideoHandle extends SimpleChannelInboundHandler<DatagramPacket> {
 //        if(o.content().toString().contains("200 OK")){
 //            System.out.println(o.content().toString());
 //        }
-        rtpH264Parse.handleNalHeader(bytes1,ip,port);
+        rtpH264Parse.handleNalHeader(bytes1,ip);
 //        InetSocketAddress inetSocketAddress = new InetSocketAddress("192.168.6.201",1935);
 //            DatagramPacket datagramPacket1 = new DatagramPacket(Unpooled.wrappedBuffer(sipResponse.encode().getBytes()), inetSocketAddress);
 //        DatagramPacket datagramPacket1 = new DatagramPacket(o.content(), inetSocketAddress);

@@ -33,7 +33,7 @@ public class RtpH264Parse {
      * @param bytes 基于UDP传输的h264裸流传输，可能单NAUL，多NAUL和UAs一帧数据分多个rtp包发送
      * 这里不处理包连续性问题，传进来的所有包当做连续包处理，包连续性处理在调用类
      */
-    public void handleNalHeader(byte[] bytes,String ip,int port) throws IOException {
+    public void handleNalHeader(byte[] bytes,String ip) throws IOException {
 //        if(isFirst){
 //            return;
 //        }
@@ -49,14 +49,14 @@ public class RtpH264Parse {
         int frame = 0 ;
         switch (bytes[12]&0xff){
             case SPS :
-                streamSave.handleStream(byte1,false,ip,port);break;
+                streamSave.handleStream(byte1,false,ip);break;
 //            StreamSave.handleStream(header,false);
 //            StreamSave.handleStream(Arrays.copyOfRange(bytes,12,bytes.length),false);break;
-            case PPS : streamSave.handleStream(byte1,false,ip,port);break;
+            case PPS : streamSave.handleStream(byte1,false,ip);break;
 //                StreamSave.handleStream(header,false);StreamSave.handleStream(Arrays.copyOfRange(bytes,12,bytes.length),false);break;
-            case SEI : streamSave.handleStream(byte1,false,ip,port);break;
+            case SEI : streamSave.handleStream(byte1,false,ip);break;
 //                StreamSave.handleStream(header,false);StreamSave.handleStream(Arrays.copyOfRange(bytes,12,bytes.length),false);break;
-            default : getNalHeader(Arrays.copyOfRange(bytes,12,bytes.length),ip,port);
+            default : getNalHeader(Arrays.copyOfRange(bytes,12,bytes.length),ip);
         }
     }
 
@@ -86,7 +86,7 @@ public class RtpH264Parse {
 //        }
     }
 
-    public void getNalHeader(byte[]bytes,String ip,int port) throws IOException {
+    public void getNalHeader(byte[]bytes,String ip) throws IOException {
         String fuIndicator = Integer.toBinaryString(bytes[0]&0xff);
         String fuHeader = Integer.toBinaryString(bytes[1]&0xff);
         while(fuHeader.length()<8){
@@ -107,13 +107,13 @@ public class RtpH264Parse {
                byte[]bytes1 = new byte[header.length+bytes2.length];
                System.arraycopy(header,0,bytes1,0,header.length);
                System.arraycopy(bytes2,0,bytes1,bytes1.length-bytes2.length,bytes2.length);
-               streamSave.handleStream(bytes1,false,ip,port);
+               streamSave.handleStream(bytes1,false,ip);
 
            }else if(fuHeader.startsWith("01")){
                //分片结束
-               streamSave.handleStream(Arrays.copyOfRange(bytes,2,bytes.length),true,ip,port);
+               streamSave.handleStream(Arrays.copyOfRange(bytes,2,bytes.length),true,ip);
            }else{
-               streamSave.handleStream(Arrays.copyOfRange(bytes,2,bytes.length),false,ip,port);
+               streamSave.handleStream(Arrays.copyOfRange(bytes,2,bytes.length),false,ip);
            }
 
        }

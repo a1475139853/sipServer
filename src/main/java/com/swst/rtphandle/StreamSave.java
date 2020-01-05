@@ -27,7 +27,7 @@ public class StreamSave {
     {
         if (ip != null) {
             time = new Date();
-            firstPath = new File(System.getProperty("user.home") + File.separator + ip + "_" + port);
+            firstPath = new File(System.getProperty("user.home") + File.separator + ip);
             if (!firstPath.exists()) {//若此目录不存在，则创建之// 这个东西只能简历一级文件夹，两级是无法建立的。。。。。
                 firstPath.mkdir();
                 System.out.println("创建文件夹路径为：" + firstPath);
@@ -50,9 +50,9 @@ public class StreamSave {
     InputStream inputStream;
     File file;
 
-    public void handleStream(byte[] bytes, boolean last, String ip,int port) throws IOException {
+    public void handleStream(byte[] bytes, boolean last, String ip) throws IOException {
         if (ip != null) {
-            firstPath = new File(System.getProperty("user.home") + File.separator + ip + "_" + port);
+            firstPath = new File(System.getProperty("user.home") + File.separator + ip);
             if (!firstPath.exists()) {//若此目录不存在，则创建之// 这个东西只能简历一级文件夹，两级是无法建立的。。。。。
                 firstPath.mkdir();
                 System.out.println("创建文件夹路径为：" + firstPath);
