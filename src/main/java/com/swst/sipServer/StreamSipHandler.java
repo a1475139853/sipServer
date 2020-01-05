@@ -14,14 +14,12 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.springframework.stereotype.Component;
 
-import javax.sip.address.URI;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @Auther: fregun
@@ -172,7 +170,8 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
     }
     //处理不包含sdp的Invite信令请求消息
     public void handNoSdp(SipMessageEvent sipMessageEvent){
-        String unUseMap = PortSingleton.getInstance().getUnUseMap();
+        // TODO 解析 SDP 取出 对方端口 以及 IP
+        String unUseMap = PortSingleton.getInstance().getUnUseMapForStreamReceive(14068,"192.168.6.94");
         String[] split = unUseMap.split(",");
         //获取流接收端口和ip地址,这里暂时写死
         SIPRequest message = (SIPRequest) sipMessageEvent.getMessage();
@@ -186,10 +185,15 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
     }
     //处理包含sdp的Invite信令请求消息
     public void handleContainSdp(SipMessageEvent sipMessageEvent){
+        // TODO 解析 SDP 取出 对方端口 以及 IP
         //流发送端口和发送地址,这里调用方法获取端口
-        int port = 5061;
-        String sdp = SDP.sdptop+port+SDP.sdpBottom;//构建ok消息
+        String unUseMap = PortSingleton.getInstance().getUnUseMapForStreamSend(14068,"192.168.6.201");// 端口 ip 测试使用 已写死
+        String[] split = unUseMap.split(",");
+
+//        int port = 5061;
+        String sdp = SDP.sdptop+Integer.parseInt(split[0])+SDP.sdpBottom;//构建ok消息
         SIPRequest message = (SIPRequest) sipMessageEvent.getMessage();
+
         SIPResponse response = message.createResponse(200);
         response.setToTag(Generate.generateTag());
         response.setMessageContent(sdp.getBytes());
