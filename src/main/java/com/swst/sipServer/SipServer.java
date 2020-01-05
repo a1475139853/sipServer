@@ -89,13 +89,15 @@ public class SipServer implements CommandLineRunner {
                         }
 
                     });
-            ChannelFuture future = bootstrap.bind("192.168.6.153",5062).sync();
+            ChannelFuture future = bootstrap.bind("192.168.6.201",5062).sync();
             System.out.println("5062 netty 启动完成");
             //启动后向sip服务器进行注册
+/*
             while(b){
                 this.register(future.channel());
                 Thread.sleep(500);
             }
+*/
 
             future.channel().closeFuture().await();
         }catch (Exception e ){
@@ -105,7 +107,7 @@ public class SipServer implements CommandLineRunner {
             work.shutdownGracefully();
         }
     }
-
+/*
     public  SIPRequest register(Channel channel) throws ParseException {
         //从数据库取得sip服务器的国际编码，域名或者ip端口,这里暂时写死
         String sipCode = "isscid";
@@ -138,6 +140,6 @@ public class SipServer implements CommandLineRunner {
         System.out.println(sipRequest);
         channel.writeAndFlush(datagramPacket1);
         return sipRequest;
-    }
+    }*/
 }
 

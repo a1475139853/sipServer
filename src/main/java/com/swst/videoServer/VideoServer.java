@@ -61,7 +61,7 @@ public class VideoServer {
                         ChannelFuture future = bootstrap.bind(port).sync();
 //            future.channel().closeFuture().await();
                         System.out.println(port + " netty 启动成功");
-                        PortSingleton.getInstance().unUseMap.put(port, "192.168.6.153");
+                        PortSingleton.getInstance().unUseMap.put(port, "192.168.6.201");
 //            PortSingleton.getInstance().unUseMap.put(port, InetAddress.getLocalHost().getHostAddress());
                     } catch (Exception e) {
                         System.out.println(port + " netty 启动失败");
