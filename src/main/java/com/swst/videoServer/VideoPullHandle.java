@@ -70,7 +70,7 @@ public class VideoPullHandle extends SimpleChannelInboundHandler<DatagramPacket>
         System.out.println("--------------------");
         channelHandlerContext.channel().remoteAddress();
         channelHandlerContext.channel().localAddress();
-        rtpH264Parse.handleNalHeader(bytes1,ip);
+        rtpH264Parse.handleNalHeader(bytes1,ip,port);
 
     }
 }

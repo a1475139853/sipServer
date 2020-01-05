@@ -17,16 +17,17 @@ public class StreamSave {
     int TIME = 150;//表示每个文件存储帧数
     SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
     SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat("yyyyMMddHHmmss");
-    Date time;
+    Date time = new Date();
     File firstPath;
     File secondPath;
     File thirdPath;
     String ip;
+    int port;
 
     {
         if (ip != null) {
             time = new Date();
-            firstPath = new File(System.getProperty("user.home") + File.separator + ip);
+            firstPath = new File(System.getProperty("user.home") + File.separator + ip + "_" + port);
             if (!firstPath.exists()) {//若此目录不存在，则创建之// 这个东西只能简历一级文件夹，两级是无法建立的。。。。。
                 firstPath.mkdir();
                 System.out.println("创建文件夹路径为：" + firstPath);
@@ -49,9 +50,9 @@ public class StreamSave {
     InputStream inputStream;
     File file;
 
-    public void handleStream(byte[] bytes, boolean last, String ip) throws IOException {
+    public void handleStream(byte[] bytes, boolean last, String ip,int port) throws IOException {
         if (ip != null) {
-            firstPath = new File(System.getProperty("user.home") + File.separator + ip);
+            firstPath = new File(System.getProperty("user.home") + File.separator + ip + "_" + port);
             if (!firstPath.exists()) {//若此目录不存在，则创建之// 这个东西只能简历一级文件夹，两级是无法建立的。。。。。
                 firstPath.mkdir();
                 System.out.println("创建文件夹路径为：" + firstPath);
@@ -108,6 +109,7 @@ public class StreamSave {
          * 调用ffmpegAPI
          */
         fileOutputStream.write(bytes);
+
         fileOutputStream.flush();
 //        FFmpegBuilder fFmpegBuilder = null;
 //        push(fFmpegBuilder);

@@ -34,23 +34,27 @@ import static com.swst.utils.WriteMessageToSIP.Call_ID;
 public class SipServer implements CommandLineRunner {
     public static boolean b = true;
     
-    public void run(String... args) throws Exception {
+    public void run(String... args){
         System.out.println("启动了");
 //        new Thread(new Timer()).start();
         new Thread(new Runnable() {
             public void run() {
-                start();
+                new SipServer().start();
             }
         }).start();
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-                    new VideoServer(25061,25067).start();
-                } catch (Exception e) {
-                    e.printStackTrace();
+        for(int i=25061;i<=25067;i++){
+            final int port = i;
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        new VideoServer().start(port);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        }).start();
+            }).start();
+        }
+
 
     }
     private void start(){
@@ -76,7 +80,7 @@ public class SipServer implements CommandLineRunner {
                         }
 
                     });
-            ChannelFuture future = bootstrap.bind("192.168.6.201",5062).sync();
+            ChannelFuture future = bootstrap.bind("192.168.6.153",5062).sync();
             System.out.println("5062 netty 启动完成");
             //启动后向sip服务器进行注册
             while(b){
@@ -100,7 +104,7 @@ public class SipServer implements CommandLineRunner {
         int sipPort = 5070;
         //流媒体服务器国际编码也是从数据库取得，这里暂时写死
         String streamCode = "60215231000024101";
-        String streamIp = "192.168.6.201";
+        String streamIp = "192.168.6.153";
         int streamPort = 5062;
         SIPRequest sipRequest = new SIPRequest();
         RequestLine requestLine = new RequestLine();

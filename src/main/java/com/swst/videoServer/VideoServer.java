@@ -27,50 +27,52 @@ import java.util.Map;
  * @Description:
  */
 @Component
-public class VideoServer{
+public class VideoServer {
 
     private int beginPort;
     private int endPort;
 
 
-    public VideoServer(){
+    public VideoServer() {
 
     }
 
-    public VideoServer(int beginPort,int endPort){
+/*    public VideoServer(int beginPort, int endPort) {
         this.beginPort = beginPort;
         this.endPort = endPort;
-    }
+    }*/
 
 
-    public void start(){
+    public void start(int i) {
         EventLoopGroup boss = new NioEventLoopGroup();
         EventLoopGroup work = new NioEventLoopGroup();
 
-        for (int i = beginPort; i <= endPort; i++) {
-            final int port = i;
-            new Thread(new Runnable() {
-                public void run() {
-                    try {
-                        Bootstrap bootstrap = new Bootstrap();
+//        for (int i = beginPort; i <= endPort; i++) {
+        final int port = i;
+//            new Thread(new Runnable() {
+//                public void run() {
+        try {
+            Bootstrap bootstrap = new Bootstrap();
 
-                        bootstrap.group(boss)
-                                .channel(NioDatagramChannel.class)
-                                .option(ChannelOption.SO_BROADCAST, true)
-                                .handler(new VideoHandle());
-                        ChannelFuture future = bootstrap.bind(port).sync();
-                        future.channel().closeFuture().await();
-                        System.out.println(port + " netty 启动成功");
-                        PortSingleton.getInstance().unUseMap.put(port, InetAddress.getLocalHost().getHostAddress());
-                    } catch (Exception e) {
-                        System.out.println(port + " netty 启动失败");
-                    }
-                }
-            }).start();
+            bootstrap.group(boss)
+                    .channel(NioDatagramChannel.class)
+                    .option(ChannelOption.SO_BROADCAST, true)
+                    .handler(new VideoHandle());
+            ChannelFuture future = bootstrap.bind(port).sync();
+//            future.channel().closeFuture().await();
+            System.out.println(port + " netty 启动成功");
+            PortSingleton.getInstance().unUseMap.put(port, "192.168.6.153");
+//            PortSingleton.getInstance().unUseMap.put(port, InetAddress.getLocalHost().getHostAddress());
+        } catch (Exception e) {
+            System.out.println(port + " netty 启动失败");
         }
-        for (Map.Entry<Integer,String> map: PortSingleton.getInstance().unUseMap.entrySet()) {
-            System.out.println("端口"+map.getKey()+"已加入未使用队列;本机IP为:"+map.getValue());
-        }
+
+//        }
+//            }).start();
+//        }
+/*        for (Map.Entry<Integer, String> map : PortSingleton.getInstance().unUseMap.entrySet()) {
+            System.out.println("端口" + map.getKey() + "已加入未使用队列;本机IP为:" + map.getValue());
+        }*/
 
         /*try {
             new Thread(new Runnable() {

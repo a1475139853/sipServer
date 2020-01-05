@@ -132,7 +132,7 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
         //
         //        3）Response=MD5(HA1:nonce:HA2)
         String streamCode = "60215231000024101";
-        String streamIp = "192.168.6.201";
+        String streamIp = "192.168.6.153";
         int streamPort = 5060;
         //此处写死，实际从数据库查得passward查出，
         digest.update((streamCode+":"+reaml+":"+123456).getBytes());

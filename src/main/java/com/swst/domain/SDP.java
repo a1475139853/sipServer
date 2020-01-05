@@ -55,9 +55,9 @@ public class SDP {
                 +"s=" +s+"\n"
                 +"c=IN IP4 "+streamIp+"\n"
                 +"t="+startTime+" "+endTime+"\n"
-                +"m=video"+streamPortV+"RTP/AVP 98\n"
+                +"m=video "+streamPortV+" RTP/AVP 98\n"
                 +"a=recvonly\n"
-                +"a=rtmp:98 H264/90000\n";
+                +"a=rtpmap:98 H264/90000\n";
     }
 
     public String getA(String internationCode,String streamIp,int streamPortA,long startTime,long endTime){
@@ -111,10 +111,10 @@ public class SDP {
                 +"t="+startTime+" "+endTime+"\n"
                 +"m=video"+streamPortV+"RTP/AVP 98\n"
                 +"a=recvonly\n"
-                +"a=rtmp:98 H264/90000\n"
+                +"a=rtpmap:98 H264/90000\n"
                 +"m=audio"+streamPortA+"RTP/AVP 98\n"
                 +"a=recvonly\n"
-                +"a=rtmp:98 H264/90000\n";
+                +"a=rtpmap:98 H264/90000\n";
     }
 
 }
