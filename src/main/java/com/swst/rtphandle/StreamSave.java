@@ -110,6 +110,8 @@ public class StreamSave {
          */
         fileOutputStream.write(bytes);
 
+
+
         fileOutputStream.flush();
 //        FFmpegBuilder fFmpegBuilder = null;
 //        push(fFmpegBuilder);
@@ -125,5 +127,7 @@ public class StreamSave {
     public static void push(FFmpegBuilder fFmpegBuilder) throws URISyntaxException {
         fFmpegBuilder.addInput("/root/Desktop/test.h264");
     }
+
+
 
 }

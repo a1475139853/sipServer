@@ -1,8 +1,10 @@
 package com.swst.sipServer;
 
 import com.swst.domain.SDP;
+import com.swst.neety.NettyCustomerClient;
 import com.swst.sipServer.codes.SipMessageEvent;
 import com.swst.utils.Generate;
+import com.swst.utils.IpAndPort;
 import com.swst.utils.ParseUtil;
 import com.swst.videoServer.PortSingleton;
 import gov.nist.javax.sip.address.SipUri;
@@ -38,11 +40,20 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
            else if(SIPRequest.INVITE.equals(message.getCSeq().getMethod())){//处理Invite信息
                if(message.getMessageContent() != null && message.getMessageContent().length()>1){
                    this.handleContainSdp(sipMessageEvent);
+                   //第一次指令，我会给你数据接收端口地址，你回我netty的数据发送端口地址
+                    String ip = "192.168.6.201";
+                    int port = 9999;
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            IpAndPort client = new NettyCustomerClient().client(ip, port);
+                        }
+                    }).start();
                }else{
                    handNoSdp(sipMessageEvent);
                }
            }else if(SIPRequest.ACK.equals(sipMessageEvent.getMessage().getCSeq().getMethod())){//处理ack信息
-
+               //第二次
            }else if(SIPRequest.BYE.equals(message.getCSeq().getMethod())){
                SIPResponse sipResponse = sipResponseMap.get(message.getCallId().getCallId());
                if(sipResponse != null && sipResponse.getFromTag().equals(message.getFromTag()) && sipResponse.getToTag().equals(message.getToTag())){
