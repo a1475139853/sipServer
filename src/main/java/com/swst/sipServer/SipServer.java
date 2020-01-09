@@ -1,29 +1,14 @@
 package com.swst.sipServer;
 
-import com.swst.sipServer.SipHandler;
 import com.swst.sipServer.codes.SipMessageDatagramDecoder;
 import com.swst.sipServer.codes.SipMessageEncoder;
-import com.swst.utils.Generate;
 import com.swst.videoServer.VideoServer;
-import com.swst.websocket.WebsocketServer;
-import gov.nist.javax.sip.address.SipUri;
-import gov.nist.javax.sip.header.RequestLine;
-import gov.nist.javax.sip.message.SIPRequest;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.DatagramPacket;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import java.net.InetSocketAddress;
-import java.text.ParseException;
-import java.util.Random;
-import java.util.UUID;
-
-import static com.swst.utils.WriteMessageToSIP.Call_ID;
 
 /**
  * @Auther: fregun

@@ -10,4 +10,5 @@ public class IpAndPort implements Serializable {
     private String ip;
     private int port;
     private ChannelFuture sync;
+    private boolean push;
 }

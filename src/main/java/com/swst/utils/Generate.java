@@ -8,8 +8,8 @@ import java.util.Date;
  * @Description:
  */
 public class Generate {
-    public static String generateTag(){
-        return "tag="+String.valueOf(System.currentTimeMillis()).substring(3);
+    public static String generateTag() {
+        return "tag=" + String.valueOf(System.currentTimeMillis()).substring(3);
     }
     public static String getTag(){
         return String.valueOf(System.currentTimeMillis()).substring(3);
