@@ -74,3 +74,8 @@ servlet:
   multipart:
     max-file-size: -1
     max-request-size: -1
+
+stream-server:
+  ip: "192.168.6.201"
+  port: 5062
+  code: "60021111000002"

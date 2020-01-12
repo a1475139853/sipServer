@@ -45,10 +45,10 @@ public class VideoServer {
 
     public void start() {
         EventLoopGroup boss = new NioEventLoopGroup();
-        EventLoopGroup work = new NioEventLoopGroup();
-
+        PortSingleton instance = PortSingleton.getInstance();
         for (int i = beginPort; i <= endPort; i++) {
             final int port = i;
+            instance.addPort(port);//存储接收流未使用端口
             new Thread(new Runnable() {
                 public void run() {
                     try {
@@ -59,10 +59,7 @@ public class VideoServer {
                                 .option(ChannelOption.SO_BROADCAST, true)
                                 .handler(new VideoHandle());
                         ChannelFuture future = bootstrap.bind(port).sync();
-//            future.channel().closeFuture().await();
                         System.out.println(port + " netty 启动成功");
-                        PortSingleton.getInstance().unUseMap.put(port, "192.168.6.201");
-//            PortSingleton.getInstance().unUseMap.put(port, InetAddress.getLocalHost().getHostAddress());
                     } catch (Exception e) {
                         System.out.println(port + " netty 启动失败");
                     }

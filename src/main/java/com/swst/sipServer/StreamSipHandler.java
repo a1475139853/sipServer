@@ -1,5 +1,7 @@
 package com.swst.sipServer;
 
+import com.swst.config.SpringContextHolder;
+import com.swst.config.StreamConfig;
 import com.swst.domain.SDP;
 import com.swst.neety.NettyCustomerClient;
 import com.swst.sipServer.codes.SipMessageEvent;
@@ -12,6 +14,7 @@ import gov.nist.javax.sip.message.SIPRequest;
 import gov.nist.javax.sip.message.SIPResponse;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
@@ -25,6 +28,7 @@ import java.util.Map;
  */
 @Component
 public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEvent> {
+    private StreamConfig streamConfig = (StreamConfig)SpringContextHolder.getBean("streamConfig");
     Map<String,SIPResponse> sipResponseMap = new HashMap<>();
     Map<String,String>ipMap = new HashMap<>();//根据cameraCode存储对应ip信息
    public static Map<String,IpAndPort> ipAndPortMap = new HashMap<>();
@@ -148,21 +152,21 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
         IpAndPort ipAndPort = ipAndPortMap.get(s);
         ipAndPort.setPush(true);
     }
-    //处理不包含sdp的Invite信令请求消息
+    //处理不包含sdp的Invite信令请求消息，第一次获取接收数据端口
     public void handNoSdp(SipMessageEvent sipMessageEvent){
         // TODO 解析 SDP 取出 对方端口 以及 IP
         //根据Subject获取cameraCode
         String subject = sipMessageEvent.getMessage().getHeader("Subject").toString();
         String substring = subject.substring(subject.indexOf(":") + 2);
         String cameraCode = substring.substring(0, substring.indexOf(":"));
-        //将流接收地址端口和camera发送地址端口进行绑定
+        //将流接收地址端口和camera编码进行绑定
 
-        String unUseMap = PortSingleton.getInstance().getUnUseMapForStreamReceive(cameraCode);
-        String[] split = unUseMap.split(",");
+        String unUseMap = PortSingleton.getInstance().getRecIpAndPort(cameraCode);
+        String[] split = unUseMap.split(":");
         //获取流接收端口和ip地址,这里暂时写死,
         SIPRequest message = (SIPRequest) sipMessageEvent.getMessage();
         String sdp = new SDP().getV(ParseUtil.parseMessage(message.getTo().getAddress().toString()),
-                split[1],Integer.parseInt(split[0]),0,0);//构建ok消息
+                split[0],Integer.parseInt(split[1]),0,0);//构建ok消息
         SIPResponse response = message.createResponse(200);
         response.setToTag(Generate.getTag());
         response.setMessageContent(sdp.getBytes());
@@ -175,12 +179,8 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
     public void handleContainSdp(SipMessageEvent sipMessageEvent,IpAndPort ipAndPort){
         // TODO 解析 SDP 取出 对方端口 以及 IP
         //流发送端口和发送地址,这里调用方法获取端口
-        String unUseMap = PortSingleton.getInstance().getUnUseMapForStreamSend(14068,"192.168.6.201");// 端口 ip 测试使用 已写死
-        String[] split = unUseMap.split(",");
-
-//        int port = 5061;
         String streamCode = "60215231000024101";//配置文件配置
-        String sdp = new SDP().getV(streamCode,ipAndPort.getIp(),ipAndPort.getPort(),0,0);//构建ok消息
+        String sdp = new SDP().getV(streamConfig.getCode(),ipAndPort.getIp(),ipAndPort.getPort(),0,0);//构建ok消息
         SIPRequest message = (SIPRequest) sipMessageEvent.getMessage();
 
         SIPResponse response = message.createResponse(200);

@@ -1,10 +1,22 @@
 package com.swst.videoServer;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.swst.config.SpringContextHolder;
+import com.swst.config.StreamConfig;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+@Component
 public class PortSingleton {
+    private StreamConfig streamConfig = (StreamConfig)SpringContextHolder.getBean("streamConfig");
     private static volatile PortSingleton ourInstance = null;
+    //存储未使用接收数据端口信息
+    List<Integer> unUsedList = new ArrayList<>();
+    //存储已使用接收端口信息、已使用接收端口绑定信息
+    Map<String,String> usedMap = new HashMap<>();//键：　媒体发送者编码/媒体发送者ip+port　值：　接收ip+port
+
     public Map<Map<Integer, String>,Map<Integer, String>> usedStreamReceiveBindMap = new HashMap<>(); // 保存接收流已用port+ip和媒体流发送者发送流port+ip关系
     public Map<String,Map<Integer,String>> usedStreamReceiveMap = new HashMap<>();//绑定媒体发送者设备与流接收端口ｉｐ信息
     public Map<Integer, String> unUseMap = new HashMap<>();  // 保存可用端口
@@ -23,6 +35,25 @@ public class PortSingleton {
     }
     private PortSingleton() {
 
+    }
+
+    /**
+     *
+     * @param cameraCode 媒体流发送者设备编码
+     * @return 流接收 ip+":"+port
+     */
+    public String getRecIpAndPort(String cameraCode){
+        if(unUsedList.size()>0){
+            Integer port = unUsedList.get(0);
+            Integer remove = unUsedList.remove(0);
+            String ip = streamConfig.getIp();
+            usedMap.put(cameraCode,ip+":"+port);
+            return ip+":"+port;
+        }
+        return null;
+    }
+    public void addPort(int port){
+        this.unUsedList.add(port);
     }
 
     /**
