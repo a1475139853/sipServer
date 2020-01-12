@@ -2,8 +2,12 @@ package com.swst.videoServer;
 
 import com.swst.config.SpringContextHolder;
 import com.swst.config.StreamConfig;
+import com.swst.domain.DataInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+import javax.annotation.Resources;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,10 +16,21 @@ import java.util.Map;
 public class PortSingleton {
     private StreamConfig streamConfig = (StreamConfig)SpringContextHolder.getBean("streamConfig");
     private static volatile PortSingleton ourInstance = null;
+//    @Autowired(required = false)
+//    private  StreamConfig streamConfig;
     //存储未使用接收数据端口信息
-    List<Integer> unUsedList = new ArrayList<>();
+     private List<Integer> unUsedList = new ArrayList<>();
+
+
     //存储已使用接收端口信息、已使用接收端口绑定信息
     Map<String,String> usedMap = new HashMap<>();//键：　媒体发送者编码/媒体发送者ip+port　值：　接收ip+port
+
+
+    //  以code 为键  存储已经使用的 接收端 ip 端口  摄像头 ip
+    private  Map<String , DataInfo> useCodeDataMap=new HashMap<>();
+
+    // 以 摄像头ip+端口作为值 存储已经使用的 接收端 ip 端口  摄像头 ip
+    private  Map<String ,DataInfo> useIpPortDataMap=new HashMap<>();
 
     public Map<Map<Integer, String>,Map<Integer, String>> usedStreamReceiveBindMap = new HashMap<>(); // 保存接收流已用port+ip和媒体流发送者发送流port+ip关系
     public Map<String,Map<Integer,String>> usedStreamReceiveMap = new HashMap<>();//绑定媒体发送者设备与流接收端口ｉｐ信息
@@ -44,10 +59,24 @@ public class PortSingleton {
      */
     public String getRecIpAndPort(String cameraCode){
         if(unUsedList.size()>0){
+            for (int i:unUsedList){
+                System.out.print(i+"  ");
+            }
+            System.out.println();
             Integer port = unUsedList.get(0);
             Integer remove = unUsedList.remove(0);
             String ip = streamConfig.getIp();
             usedMap.put(cameraCode,ip+":"+port);
+           // 接收摄像头流 的接收端 的code
+
+            String localcode = streamConfig.getCode();
+            DataInfo dataInfo = new DataInfo();
+            dataInfo.setReceiveCode(localcode);
+            dataInfo.setCameraCode(cameraCode);
+             dataInfo.setReceivePort(port);
+             dataInfo.setReceiveIp(ip);
+             useCodeDataMap.put(cameraCode,dataInfo);
+
             return ip+":"+port;
         }
         return null;
@@ -100,5 +129,29 @@ public class PortSingleton {
             return map.getKey()+","+map.getValue();
         }
         return "";
+    }
+
+    public Map<String, DataInfo> getUseCodeDataMap() {
+        return useCodeDataMap;
+    }
+
+    public void setUseCodeDataMap(Map<String, DataInfo> useCodeDataMap) {
+        this.useCodeDataMap = useCodeDataMap;
+    }
+
+    public Map<String, DataInfo> getUseIpPortDataMap() {
+        return useIpPortDataMap;
+    }
+
+    public void setUseIpPortDataMap(Map<String, DataInfo> useIpPortDataMap) {
+        this.useIpPortDataMap = useIpPortDataMap;
+    }
+
+    public List<Integer> getUnUsedList() {
+        return unUsedList;
+    }
+
+    public void setUnUsedList(List<Integer> unUsedList) {
+        this.unUsedList = unUsedList;
     }
 }

@@ -2,6 +2,7 @@ package com.swst.sipServer;
 
 import com.swst.config.SpringContextHolder;
 import com.swst.config.StreamConfig;
+import com.swst.domain.DataInfo;
 import com.swst.domain.SDP;
 import com.swst.neety.NettyCustomerClient;
 import com.swst.sipServer.codes.SipMessageEvent;
@@ -32,6 +33,10 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
     Map<String,SIPResponse> sipResponseMap = new HashMap<>();
     Map<String,String>ipMap = new HashMap<>();//根据cameraCode存储对应ip信息
    public static Map<String,IpAndPort> ipAndPortMap = new HashMap<>();
+
+//    //存储已经使用的 接收端 ip 端口  摄像头 ip 断开  code  以及阀值
+//    private  Map<String , DataInfo> useData=new HashMap<>();
+
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, SipMessageEvent sipMessageEvent) throws Exception {
        if(sipMessageEvent.getMessage() instanceof SIPRequest){
@@ -117,6 +122,7 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
             //返回会话不存在信息
             return;
         }
+
         //获取媒体发送发送端口ip
         String sdp = message.getMessageContent();
         String ip = null;//媒体发送者ip
@@ -129,6 +135,23 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
         String cameraCode = parseSDPGetCode(sdp);
         //通过cameraCode存储ip信息
         ipMap.put(cameraCode,ip);
+
+        //根据摄像头ip 去取存入的数据
+         DataInfo dataInfo = PortSingleton.getInstance().getUseCodeDataMap().get(cameraCode);
+     if(dataInfo==null){
+        //如果没有
+        return;
+       }
+      //第二次  存code 作为键  数据
+       dataInfo.setCameraIp(ip);
+       dataInfo.setCameraPort(Integer.parseInt(port));
+       PortSingleton.getInstance().getUseCodeDataMap().put(cameraCode,dataInfo);
+
+        //摄像头的ipport为key  存map
+        String cameraIpAndPortKey=ip+port;
+        PortSingleton.getInstance().getUseIpPortDataMap().put(cameraIpAndPortKey,dataInfo);
+
+
         //根据cameraId获取接收流port+ip信息
         Map<Integer, String> receiveMap = PortSingleton.getInstance().usedStreamReceiveMap.get(cameraCode);
         //绑定媒体发送者发流port+ip 和流媒体服务器接收流port+ip信息
@@ -152,8 +175,14 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
         IpAndPort ipAndPort = ipAndPortMap.get(s);
         ipAndPort.setPush(true);
     }
+
+
     //处理不包含sdp的Invite信令请求消息，第一次获取接收数据端口
     public void handNoSdp(SipMessageEvent sipMessageEvent){
+          //用于存连接信息
+         DataInfo dataInfo=new DataInfo();
+
+
         // TODO 解析 SDP 取出 对方端口 以及 IP
         //根据Subject获取cameraCode
         String subject = sipMessageEvent.getMessage().getHeader("Subject").toString();
@@ -162,6 +191,7 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
         //将流接收地址端口和camera编码进行绑定
 
         String unUseMap = PortSingleton.getInstance().getRecIpAndPort(cameraCode);
+        System.out.println("---------------"+PortSingleton.getInstance().getUnUsedList().size());
         String[] split = unUseMap.split(":");
         //获取流接收端口和ip地址,这里暂时写死,
         SIPRequest message = (SIPRequest) sipMessageEvent.getMessage();
@@ -173,6 +203,15 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
         System.out.println(response);
         sipMessageEvent.getConnection().send(response);
         response.addHeader(message.getHeader("Subject"));
+          //获取到接收端的IP 断开 并存入
+            String receiveIp=split[0];
+            Integer receivePort=Integer.parseInt(split[1]);
+
+       // useData.put(cameraCode,dataInfo);
+       //        dataInfo.setReceiveIp(receiveIp);
+       //        dataInfo.setReceivePort(receivePort);
+       //向单例 存放已使用的数据
+       //  PortSingleton.getInstance().getUseDataMap().put(cameraCode,dataInfo);
         sipResponseMap.put(message.getCallId().getCallId(),response);
     }
     //处理包含sdp的Invite信令请求消息
