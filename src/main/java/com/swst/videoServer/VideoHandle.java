@@ -1,15 +1,18 @@
 package com.swst.videoServer;
 
+import com.swst.domain.DataInfo;
 import com.swst.rtphandle.RtpH264Parse;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.DatagramPacket;
+import org.bytedeco.javacpp.presets.opencv_core;
 
 import java.awt.image.BufferedImage;
 import java.net.InetSocketAddress;
 import java.util.HashMap;
+import java.util.Map;
 
 import static java.util.Arrays.copyOfRange;
 
@@ -47,9 +50,23 @@ public class VideoHandle extends SimpleChannelInboundHandler<DatagramPacket> {
             a = false;
         }
 
+
+
 //        System.out.println("--------------------");
 
         rtpH264Parse.handleNalHeader(bytes1,ip);
+
+          //接收数据  将阀值置   置空0
+          String  str=ip+port;
+         Map<String, DataInfo> useCodeDataMap = PortSingleton.getInstance().getUseCodeDataMap();
+         Map<String, DataInfo> useIpPortDataMap = PortSingleton.getInstance().getUseIpPortDataMap();
+         DataInfo dataInfo = useIpPortDataMap.get(str);
+         if(dataInfo!=null){
+             String cameraCode = dataInfo.getCameraCode();
+             dataInfo.setThreshold(0);
+             useIpPortDataMap.put(str,dataInfo);
+             useCodeDataMap.put(cameraCode,dataInfo);
+         }
 
     }
 }
