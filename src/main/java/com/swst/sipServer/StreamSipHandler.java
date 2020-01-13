@@ -39,29 +39,8 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
            if(SIPRequest.REGISTER.equals(message.getCSeq().getMethod())){
            }
            else if(SIPRequest.INVITE.equals(message.getCSeq().getMethod())){//处理Invite信息
-               if(message.getMessageContent() != null && message.getMessageContent().length()>1){
-                   //第二次指令，我会给你数据接收端口地址，你回我netty的数据发送端口地址
-                   String ip = null;
-                   String port = null;
-                   String sdp = message.getMessageContent();
-                   String s = parseSDP(sdp, ip, port);
-                   String[] split = s.split(":");
-                   ip = split[0];
-                   port = split[1];
-                   //启动netty线程
-                   NettyCustomerClient nettyCustomerClient = new NettyCustomerClient(ip, Integer.parseInt(port));
-                   nettyCustomerClient.run();
-                   System.out.println(nettyCustomerClient.getIpAndPort());
-                   //获取媒体发送者iｐ,根据媒体发送者设备编号获取ｉｐ
-                   System.out.println(message.getHeader("Subject"));
-                   String subject = message.getHeader("Subject").toString();
-                   String substring = subject.substring(subject.indexOf(":") + 2);
-                   String cameraCode = substring.substring(0, substring.indexOf(":"));
-                   String cameraIp = ipMap.get(cameraCode);
-                   //根据ip存储流传输通道和传输端口信息
-                   ipAndPortMap.put(cameraIp,nettyCustomerClient.getIpAndPort());
-                   IpAndPort ipAndPort = ipAndPortMap.get(cameraIp);
-                   this.handleContainSdp(sipMessageEvent,nettyCustomerClient.getIpAndPort());
+               if(message.getMessageContent() != null && message.getMessageContent().length()>1){//判断Invite是直播还是回放
+                   this.handleContainSdp(sipMessageEvent);
                }else{
                    handNoSdp(sipMessageEvent);
                }
@@ -152,14 +131,14 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
         IpAndPort ipAndPort = ipAndPortMap.get(s);
         ipAndPort.setPush(true);
     }
-    //处理不包含sdp的Invite信令请求消息，第一次获取接收数据端口
+    //处理不包含sdp的Invite信令请求消息
     public void handNoSdp(SipMessageEvent sipMessageEvent){
         // TODO 解析 SDP 取出 对方端口 以及 IP
         //根据Subject获取cameraCode
         String subject = sipMessageEvent.getMessage().getHeader("Subject").toString();
         String substring = subject.substring(subject.indexOf(":") + 2);
         String cameraCode = substring.substring(0, substring.indexOf(":"));
-        //将流接收地址端口和camera编码进行绑定
+        //将流接收地址端口和camera发送地址端口进行绑定
 
         String unUseMap = PortSingleton.getInstance().getRecIpAndPort(cameraCode);
         String[] split = unUseMap.split(":");
@@ -176,17 +155,46 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
         sipResponseMap.put(message.getCallId().getCallId(),response);
     }
     //处理包含sdp的Invite信令请求消息
-    public void handleContainSdp(SipMessageEvent sipMessageEvent,IpAndPort ipAndPort){
+    public void handleContainSdp(SipMessageEvent sipMessageEvent) throws UnsupportedEncodingException {
         // TODO 解析 SDP 取出 对方端口 以及 IP
-        //流发送端口和发送地址,这里调用方法获取端口
-        String streamCode = "60215231000024101";//配置文件配置
-        String sdp = new SDP().getV(streamConfig.getCode(),ipAndPort.getIp(),ipAndPort.getPort(),0,0);//构建ok消息
         SIPRequest message = (SIPRequest) sipMessageEvent.getMessage();
+        String ip = null;
+        String port = null;
+        String oldSdp = message.getMessageContent();
+        String s = parseSDP(oldSdp, ip, port);
+        String[] split = s.split(":");
+        ip = split[0];
+        port = split[1];
+        String []sdpArray = oldSdp.split("\r\n");
+        for(String str:sdpArray){
+            if(!str.startsWith("t="))continue;
+            if("t=0 0".equals(str)){//说明是直播,直播逻辑处理
+                //启动netty线程
+                NettyCustomerClient nettyCustomerClient = new NettyCustomerClient(ip, Integer.parseInt(port));
+                nettyCustomerClient.run();
+                System.out.println(nettyCustomerClient.getIpAndPort());
+                //获取媒体发送者iｐ,根据媒体发送者设备编号获取ｉｐ
+                System.out.println(message.getHeader("Subject"));
+                String subject = message.getHeader("Subject").toString();
+                String substring = subject.substring(subject.indexOf(":") + 2);
+                String cameraCode = substring.substring(0, substring.indexOf(":"));
+                String cameraIp = ipMap.get(cameraCode);
+                //根据ip存储流传输通道和传输端口信息
+                ipAndPortMap.put(cameraIp,nettyCustomerClient.getIpAndPort());
+                IpAndPort ipAndPort = ipAndPortMap.get(cameraIp);
+                //流发送端口和发送地址,这里调用方法获取端口
+                String sdp = new SDP().getV(streamConfig.getCode(),ipAndPort.getIp(),ipAndPort.getPort(),0,0);//构建ok消息
 
-        SIPResponse response = message.createResponse(200);
-        response.setToTag(Generate.generateTag());
-        response.setMessageContent(sdp.getBytes());
-        sipMessageEvent.getConnection().send(response);
+                SIPResponse response = message.createResponse(200);
+                response.setToTag(Generate.generateTag());
+                response.setMessageContent(sdp.getBytes());
+                sipMessageEvent.getConnection().send(response);
+                break;
+            }else{//回放逻辑处理
+
+            }
+        }
+
         //解析流发送地址，暂时未做tag和callId分析
     }
 

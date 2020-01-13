@@ -6,16 +6,16 @@ package com.swst.domain;
  * @Description: 封装发送或者接收端口sdp文件信息
  */
 public class SDP {
-    public static final String sdptop = "v=0\n" +
-            "o=C5-07-D2 0 0 IN IP4 192.168.6.201\n" +
-            "s=Play\n" +
-            "c=IN IP4 192.168.6.201\n" +
-            "t=0 0\n" +
+    public static final String sdptop = "v=0\r\n" +
+            "o=C5-07-D2 0 0 IN IP4 192.168.6.201\r\n" +
+            "s=Play\r\n" +
+            "c=IN IP4 192.168.6.201\r\n" +
+            "t=0 0\r\n" +
             "m=video ";
-    public static final String sdpBottom = "RTP/AVP 98\n" +
-            "a=recvonly\n" +
+    public static final String sdpBottom = "RTP/AVP 98\r\n" +
+            "a=recvonly\r\n" +
 //            "a=rtpmap:96 PS/90000\n" +
-            "a=rtpmap:98 H264/90000\n" ;
+            "a=rtpmap:98 H264/90000\r\n" ;
     private String version = "0";
     private String internationCode;//流媒体服务器国际编码
     private String streamIp;//流媒体服务器接收或者发送ip
@@ -50,14 +50,14 @@ public class SDP {
         if(startTime <0 || endTime <0){
             throw new RuntimeException("startTime or endTime must be large than 0");
         }
-        return "v="+version+"\n"
-                +"o="+internationCode+" 0 0 IN IP4 "+streamIp+"\n"
-                +"s=" +s+"\n"
-                +"c=IN IP4 "+streamIp+"\n"
-                +"t="+startTime+" "+endTime+"\n"
-                +"m=video "+streamPortV+" RTP/AVP 98\n"
-                +"a=recvonly\n"
-                +"a=rtpmap:98 H264/90000\n";
+        return "v="+version+"\r\n"
+                +"o="+internationCode+" 0 0 IN IP4 "+streamIp+"\r\n"
+                +"s=" +s+"\r\n"
+                +"c=IN IP4 "+streamIp+"\r\n"
+                +"t="+startTime+" "+endTime+"\r\n"
+                +"m=video "+streamPortV+" RTP/AVP 98\r\n"
+                +"a=recvonly\r\n"
+                +"a=rtpmap:98 H264/90000\r\n";
     }
 
     public String getA(String internationCode,String streamIp,int streamPortA,long startTime,long endTime){
@@ -76,14 +76,14 @@ public class SDP {
         if(startTime <0 || endTime <0){
             throw new RuntimeException("startTime or endTime must be large than 0");
         }
-        return "v="+version+"\n"
-                +"o="+internationCode+" 0 0 IN IP4 "+streamIp+"\n"
-                +"s=" +s+"\n"
-                +"c=IN IP4 "+streamIp+"\n"
-                +"t="+startTime+" "+endTime+"\n"
-                +"m=audio"+streamPortV+"RTP/AVP 98\n"
-                +"a=recvonly\n"
-                +"a=rtmp:98 H264/90000\n";
+        return "v="+version+"\r\n"
+                +"o="+internationCode+" 0 0 IN IP4 "+streamIp+"\r\n"
+                +"s=" +s+"\r\n"
+                +"c=IN IP4 "+streamIp+"\r\n"
+                +"t="+startTime+" "+endTime+"\r\n"
+                +"m=audio"+streamPortV+"RTP/AVP 98\r\n"
+                +"a=recvonly\r\n"
+                +"a=rtmp:98 H264/90000\r\n";
     }
     public String getVAndA(String internationCode,String streamIp,int streamPortA,int streamPortV,long startTime,long endTime){
         if(internationCode == null){
@@ -104,17 +104,17 @@ public class SDP {
         if(startTime <0 || endTime <0){
             throw new RuntimeException("startTime or endTime must be large than 0");
         }
-        return "v="+version+"\n"
-                +"o="+internationCode+" 0 0 IN IP4 "+streamIp+"\n"
-                +"s=" +s+"\n"
-                +"c=IN IP4 "+streamIp+"\n"
-                +"t="+startTime+" "+endTime+"\n"
-                +"m=video"+streamPortV+"RTP/AVP 98\n"
-                +"a=recvonly\n"
-                +"a=rtpmap:98 H264/90000\n"
-                +"m=audio"+streamPortA+"RTP/AVP 98\n"
-                +"a=recvonly\n"
-                +"a=rtpmap:98 H264/90000\n";
+        return "v="+version+"\r\n"
+                +"o="+internationCode+" 0 0 IN IP4 "+streamIp+"\r\n"
+                +"s=" +s+"\r\n"
+                +"c=IN IP4 "+streamIp+"\r\n"
+                +"t="+startTime+" "+endTime+"\r\n"
+                +"m=video"+streamPortV+"RTP/AVP 98\r\n"
+                +"a=recvonly\r\n"
+                +"a=rtpmap:98 H264/90000\r\n"
+                +"m=audio"+streamPortA+"RTP/AVP 98\r\n"
+                +"a=recvonly\r\n"
+                +"a=rtpmap:98 H264/90000\r\n";
     }
 
 }

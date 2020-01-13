@@ -45,7 +45,7 @@ public class NettyCustomerClient {
                     }
                 });
                 try {
-                    ChannelFuture sync = bootstrap.connect("192.168.6.201", 9999).sync();
+                    ChannelFuture sync = bootstrap.connect(ip, port).sync();
 
                     //获取本客户端ip、端口
                     InetSocketAddress inetSocketAddress = (InetSocketAddress) sync.channel().localAddress();
