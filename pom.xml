@@ -101,6 +101,16 @@
             <artifactId>ffmpeg-platform</artifactId>
             <version>4.0.2-1.4.3</version>
         </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.20</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.20</version>
+        </dependency>
     </dependencies>
 
 

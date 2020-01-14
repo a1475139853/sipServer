@@ -1,7 +1,7 @@
 package com.swst.rtphandle;
 
 import com.swst.sipServer.StreamSipHandler;
-import com.swst.utils.IpAndPort;
+import com.swst.domain.IpAndPort;
 import net.bramp.ffmpeg.builder.FFmpegBuilder;
 
 import java.io.*;

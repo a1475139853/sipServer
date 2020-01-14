@@ -76,6 +76,16 @@ servlet:
     max-request-size: -1
 
 stream-server:
-  ip: "192.168.6.176"
+  ip: "192.168.6.201"
   port: 5062
   code: "60021111000002"
+
+video:
+  url:
+    #目录地址
+    #    path: "/home/lary_zhong/Documents/nginx-1.17.6/record/"
+    path: "/root/video/"
+    #
+    nginx: "http://192.168.6.153:8099/record/"
+  play:
+    rollbackTime: "30"

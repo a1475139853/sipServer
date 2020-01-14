@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-@Component
+
 public class PortSingleton {
     private StreamConfig streamConfig = (StreamConfig)SpringContextHolder.getBean("streamConfig");
     private static volatile PortSingleton ourInstance = null;

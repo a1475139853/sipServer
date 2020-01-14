@@ -30,7 +30,7 @@ public class SipServer implements CommandLineRunner {
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    new VideoServer(25061,25062).start();
+                    new VideoServer(25061,25069).start();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -74,7 +74,7 @@ public class SipServer implements CommandLineRunner {
                         }
 
                     });
-            ChannelFuture future = bootstrap.bind("192.168.6.176",5062).sync();
+            ChannelFuture future = bootstrap.bind("192.168.6.201",5062).sync();
             System.out.println("5062 netty 启动完成");
             //启动后向sip服务器进行注册
 /*

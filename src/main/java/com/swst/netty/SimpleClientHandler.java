@@ -1,4 +1,4 @@
-package com.swst.neety;
+package com.swst.netty;
 
 import java.nio.charset.Charset;
 

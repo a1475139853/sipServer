@@ -1,4 +1,4 @@
-package com.swst.utils;
+package com.swst.domain;
 
 import io.netty.channel.ChannelFuture;
 import lombok.Data;
