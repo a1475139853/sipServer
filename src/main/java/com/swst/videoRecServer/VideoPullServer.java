@@ -1,4 +1,4 @@
-package com.swst.videoServer;
+package com.swst.videoRecServer;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;

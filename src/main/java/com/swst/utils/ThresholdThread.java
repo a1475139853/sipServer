@@ -1,7 +1,7 @@
 package com.swst.utils;
 
 import com.swst.domain.DataInfo;
-import com.swst.videoServer.PortSingleton;
+import com.swst.videoRecServer.PortSingleton;
 
 import java.util.*;
 
@@ -30,9 +30,7 @@ public class ThresholdThread implements Runnable {
         while (true) {
             try {
               Thread.sleep(2000);
-                System.out.println("线程");
               useCodeDataMap = PortSingleton.getInstance().getUseCodeDataMap();
-                System.out.println(useCodeDataMap.size());
             if (useCodeDataMap == null || useCodeDataMap.keySet().size() == 0) {
                 continue;
             }

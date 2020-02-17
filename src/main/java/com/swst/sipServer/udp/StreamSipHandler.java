@@ -1,26 +1,21 @@
-package com.swst.sipServer;
+package com.swst.sipServer.udp;
 
 import com.swst.config.SpringContextHolder;
 import com.swst.config.StreamConfig;
-import com.swst.domain.DataInfo;
-import com.swst.domain.HistoryMessage;
-import com.swst.domain.IpAndPort;
-import com.swst.domain.SDP;
-import com.swst.netty.NettyCustomerClient;
-import com.swst.netty.TcpHistoryClient;
-import com.swst.service.video.VideoService;
+import com.swst.config.StreamRecConfig;
+import com.swst.domain.*;
 import com.swst.service.video.impl.VideoServiceImpl;
 import com.swst.sipServer.codes.SipMessageEvent;
 import com.swst.utils.Generate;
 import com.swst.utils.ParseUtil;
-import com.swst.videoServer.PortSingleton;
+import com.swst.videoRecServer.PortSingleton;
 import com.swst.vo.VideoVO;
 import gov.nist.javax.sip.message.SIPMessage;
 import gov.nist.javax.sip.message.SIPRequest;
 import gov.nist.javax.sip.message.SIPResponse;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
@@ -40,9 +35,12 @@ import java.util.concurrent.CompletableFuture;
 public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEvent> {
     private VideoServiceImpl videoService = (VideoServiceImpl)SpringContextHolder.getBean("videoServiceImpl");
     private StreamConfig streamConfig = (StreamConfig)SpringContextHolder.getBean("streamConfig");
+    private StreamRecConfig streamＲecConfig = (StreamRecConfig)SpringContextHolder.getBean("streamRecConfig");
     Map<String,SIPResponse> sipResponseMap = new HashMap<>();
     Map<String,String>ipMap = new HashMap<>();//根据cameraCode存储对应ip信息
-    public static Map<String,IpAndPort> ipAndPortMap = new HashMap<>();//存储直播流发送端口通道信息
+    public static Map<String,IpAndPort> ipAndPortMapTcp = new HashMap<>();//存储直播流发送端口通道信息Tcp
+    public static Map<String, UDPIpAndPort> ipAndPortMapUdp = new HashMap<>();//存储直播流发送端口通道信息Tcp
+
     public static Map<String,HistoryMessage> historyMessageMap = new HashMap<>();//存储回放流发送端口通道信息和会话建立信息
 
     @Override
@@ -173,8 +171,10 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
             //通过cameraCode获取cameraIP
             String s = ipMap.get(cameraCode);
             //根据cameraIp获取流传输对象
-            IpAndPort ipAndPort = ipAndPortMap.get(s);
-            ipAndPort.setPush(true);
+//            IpAndPort ipAndPort = ipAndPortMapTcp.get(s);
+//            ipAndPort.setPush(true);
+            UDPIpAndPort udpIpAndPort = ipAndPortMapUdp.get(s);
+            udpIpAndPort.setPush(true);
         }
     }
 
@@ -199,6 +199,8 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
         SIPRequest message = (SIPRequest) sipMessageEvent.getMessage();
         String sdp = new SDP().getV(ParseUtil.parseMessage(message.getTo().getAddress().toString()),
                 split[0],Integer.parseInt(split[1]),0,0);//构建ok消息
+//        String sdp = new SDP().getV(ParseUtil.parseMessage(message.getTo().getAddress().toString()),
+//                streamＲecConfig.getHost(),streamＲecConfig.getTcpPort(),0,0);
         SIPResponse response = message.createResponse(200);
         response.setToTag(Generate.getTag());
         response.setMessageContent(sdp.getBytes());
@@ -227,21 +229,33 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
         for(String str:sdpArray){
             if(!str.startsWith("t="))continue;
             if("t=0 0".equals(str)){//说明是直播,直播逻辑处理
-                //启动netty线程
-                NettyCustomerClient nettyCustomerClient = new NettyCustomerClient(ip, Integer.parseInt(port));
-                nettyCustomerClient.run();
-                System.out.println(nettyCustomerClient.getIpAndPort());
                 //获取媒体发送者iｐ,根据媒体发送者设备编号获取ｉｐ
                 System.out.println(message.getHeader("Subject"));
                 String subject = message.getHeader("Subject").toString();
                 String substring = subject.substring(subject.indexOf(":") + 2);
                 String cameraCode = substring.substring(0, substring.indexOf(":"));
                 String cameraIp = ipMap.get(cameraCode);
-                //根据ip存储流传输通道和传输端口信息
-                ipAndPortMap.put(cameraIp,nettyCustomerClient.getIpAndPort());
-                IpAndPort ipAndPort = ipAndPortMap.get(cameraIp);
+                //启动netty线程
+                //tcp传输数据
+//                NettyCustomerClient nettyCustomerClient = new NettyCustomerClient(ip, Integer.parseInt(port));
+//                nettyCustomerClient.run();
+//                System.out.println(nettyCustomerClient.getIpAndPort());
+//                ipAndPortMap.put(cameraIp,nettyCustomerClient.getIpAndPort());
+                //udp传输数据
+                Integer outPort = PortSingleton.getInstance().getOutPort();
+                if(outPort != null){
+                    Channel outChanner = PortSingleton.getInstance().getOutChanner(outPort);
+                    //根据ip存储流传输通道和传输端口信息
+                    ipAndPortMapUdp.put(cameraIp,new UDPIpAndPort(ip,Integer.valueOf(port),streamConfig.getIp(),outPort, outChanner));
+                    PortSingleton.getInstance().removeOutPort(outPort);
+                }else{//端口使用完毕
+                    return;
+                }
+
+
+
                 //流发送端口和发送地址,这里调用方法获取端口
-                String sdp = new SDP().getV(streamConfig.getCode(),ipAndPort.getIp(),ipAndPort.getPort(),0,0);//构建ok消息
+                String sdp = new SDP().getV(streamConfig.getCode(),streamConfig.getIp(),outPort,0,0);//构建ok消息
 
                 SIPResponse response = message.createResponse(200);
                 response.setToTag(Generate.getTag());
@@ -253,13 +267,23 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
                 //获取回放开始时间和结束时间
                 long startTime = Long.parseLong(str.substring(2,str.indexOf(" ")).trim());
                 long endTime = Long.parseLong(str.substring(str.indexOf(" ")).trim());
-                TcpHistoryClient tcpHistoryClient = new TcpHistoryClient(ip, Integer.valueOf(port));
-                tcpHistoryClient.run();
+//                TcpHistoryClient tcpHistoryClient = new TcpHistoryClient(ip, Integer.valueOf(port));
+//                tcpHistoryClient.run();
+//                IpAndPort ipAndPort = tcpHistoryClient.getIpAndPort();
                 //根据callId存储会话信息和文件发送端口信息
                 HistoryMessage historyMessage = new HistoryMessage();
-                IpAndPort ipAndPort = tcpHistoryClient.getIpAndPort();
-                historyMessage.setIpAndPort(ipAndPort);
-                String sdp = new SDP().getV(streamConfig.getCode(),ipAndPort.getIp(),ipAndPort.getPort(),startTime,endTime);//构建ok消息
+                Integer outPort = PortSingleton.getInstance().getOutPort();
+                if(outPort != null){
+                    Channel outChanner = PortSingleton.getInstance().getOutChanner(outPort);
+                    //根据ip存储流传输通道和传输端口信息
+                    historyMessage.setUdpIpAndPort(new UDPIpAndPort(ip,Integer.valueOf(port),streamConfig.getIp(),outPort, outChanner));
+                    PortSingleton.getInstance().removeOutPort(outPort);
+                }else{//端口使用完毕
+                    return;
+                }
+
+//                historyMessage.setIpAndPort(ipAndPort);
+                String sdp = new SDP().getV(streamConfig.getCode(),streamConfig.getIp(),outPort,startTime,endTime);//构建ok消息
                 SIPResponse response = message.createResponse(200);
                 response.setToTag(Generate.getTag());
                 response.addHeader("Content-Length: "+sdp.length());

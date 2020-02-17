@@ -1,6 +1,6 @@
 package com.swst.rtphandle;
 
-import com.swst.sipServer.StreamSipHandler;
+import com.swst.sipServer.udp.StreamSipHandler;
 import com.swst.domain.IpAndPort;
 import net.bramp.ffmpeg.builder.FFmpegBuilder;
 
@@ -116,10 +116,10 @@ public class StreamSave {
              */
             fileOutputStream.write(bytes);
 
-            IpAndPort ipAndPort = StreamSipHandler.ipAndPortMap.get(ip);
-            if (ipAndPort != null && ipAndPort.isPush()) {
-                ipAndPort.getSync().channel().writeAndFlush(bytes);
-            }
+//            IpAndPort ipAndPort = StreamSipHandler.ipAndPortMap.get(ip);
+//            if (ipAndPort != null && ipAndPort.isPush()) {
+//                ipAndPort.getSync().channel().writeAndFlush(bytes);
+//            }
 
             fileOutputStream.flush();
 

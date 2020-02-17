@@ -7,6 +7,7 @@ import com.swst.tools.FileM3u8Utils;
 import com.swst.tools.TreeFile;
 import com.swst.utils.FileUploadFile;
 import com.swst.vo.VideoVO;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -55,7 +56,7 @@ public class VideoServiceImpl implements VideoService {
         //文件目录url
         String burl= path + vo.getId() + File.separator + bymd + File.separator + byMdHms;
         //netty发送文件
-        out(burl,vo.getId(),historyMessage.getIpAndPort().getSync());
+        out(burl,vo.getId(),historyMessage.getUdpIpAndPort().getChannel());
 
         //判断是否要发下个文件夹的数据
         LocalDateTime nextIndex = vo.getNextIndex();
@@ -65,7 +66,7 @@ public class VideoServiceImpl implements VideoService {
             //下个视频文件夹url
             String aurl = path + vo.getId() + File.separator + aymd + File.separator + ayMdHms;
             //netty发送文件
-            out(aurl,vo.getId(),historyMessage.getIpAndPort().getSync());
+            out(aurl,vo.getId(),historyMessage.getUdpIpAndPort().getChannel());
         }
     }
 
@@ -74,7 +75,7 @@ public class VideoServiceImpl implements VideoService {
      * @param url 目录路径
      * @param id 摄像头id
      */
-    private void out(String url, String id, ChannelFuture channelFuture){
+    private void out(String url, String id, Channel channel){
         File file = new File(url);
         //如果有子文件
         if(FileM3u8Utils.isHasChildren(file)){
@@ -105,7 +106,7 @@ public class VideoServiceImpl implements VideoService {
                         if ((byteRead = randomAccessFile.read(bytes)) != -1) {
                             fileUploadFile.setEndPos(byteRead);
                             fileUploadFile.setBytes(bytes);
-                            channelFuture.channel().writeAndFlush(fileUploadFile);
+                            channel.writeAndFlush(fileUploadFile);
                             System.out.println(timeLong);
                         } else {
                         }

@@ -11,7 +11,7 @@ import lombok.Data;
  */
 @Data
 public class HistoryMessage {
-    private IpAndPort ipAndPort;
+    private UDPIpAndPort udpIpAndPort;
     private SIPResponse sipResponse;
     private VideoVO videoVO;
     private boolean b;

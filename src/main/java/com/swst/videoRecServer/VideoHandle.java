@@ -1,17 +1,18 @@
-package com.swst.videoServer;
+package com.swst.videoRecServer;
 
 import com.swst.domain.DataInfo;
+import com.swst.domain.IpAndPort;
+import com.swst.domain.UDPIpAndPort;
 import com.swst.rtphandle.RtpH264Parse;
+import com.swst.sipServer.udp.StreamSipHandler;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.DatagramPacket;
-import org.bytedeco.javacpp.presets.opencv_core;
 
-import java.awt.image.BufferedImage;
 import java.net.InetSocketAddress;
-import java.util.HashMap;
 import java.util.Map;
 
 import static java.util.Arrays.copyOfRange;
@@ -55,6 +56,12 @@ public class VideoHandle extends SimpleChannelInboundHandler<DatagramPacket> {
 //        System.out.println("--------------------");
 
         rtpH264Parse.handleNalHeader(bytes1,ip);
+        UDPIpAndPort ipAndPort = StreamSipHandler.ipAndPortMapUdp.get(ip);
+        if (ipAndPort != null && ipAndPort.isPush()) {
+            InetSocketAddress inetSocketAddress = new InetSocketAddress(ipAndPort.getRecIp(),ipAndPort.getRecPort());
+            DatagramPacket datagramPacket = new DatagramPacket(Unpooled.wrappedBuffer(bytes1), inetSocketAddress);
+            ipAndPort.getChannel().writeAndFlush(datagramPacket);
+        }
 
           //接收数据  将阀值置   置空0
           String  str=ip+port;

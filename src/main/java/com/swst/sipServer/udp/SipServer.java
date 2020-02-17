@@ -1,8 +1,10 @@
-package com.swst.sipServer;
+package com.swst.sipServer.udp;
 
 import com.swst.sipServer.codes.SipMessageDatagramDecoder;
 import com.swst.sipServer.codes.SipMessageEncoder;
-import com.swst.videoServer.VideoServer;
+import com.swst.sipServer.tcp.TcpSipServer;
+import com.swst.videoOutServer.VideoOutServer;
+import com.swst.videoRecServer.VideoServer;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -34,6 +36,21 @@ public class SipServer implements CommandLineRunner {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }
+        }).start();
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    new VideoOutServer(30061,30069).start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                new TcpSipServer().start();
             }
         }).start();
 /*        for(int i=25061;i<=25067;i++){

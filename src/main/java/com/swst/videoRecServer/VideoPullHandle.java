@@ -1,4 +1,4 @@
-package com.swst.videoServer;
+package com.swst.videoRecServer;
 
 import com.swst.rtphandle.RtpH264Parse;
 import io.netty.buffer.ByteBuf;

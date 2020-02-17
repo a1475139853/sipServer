@@ -80,6 +80,13 @@ stream-server:
   port: 5062
   code: "60021111000002"
 
+stream-rec:
+  host: "192.168.6.201"
+  port: 5060
+  code: "60020260000002021"
+  tcp-port: 9998
+  tcp-history-port: 8998
+
 video:
   url:
     #目录地址

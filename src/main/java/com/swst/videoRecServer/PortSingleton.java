@@ -1,17 +1,11 @@
-package com.swst.videoServer;
+package com.swst.videoRecServer;
 
 import com.swst.config.SpringContextHolder;
 import com.swst.config.StreamConfig;
 import com.swst.domain.DataInfo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import io.netty.channel.Channel;
 
-import javax.annotation.Resource;
-import javax.annotation.Resources;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PortSingleton {
     private StreamConfig streamConfig = (StreamConfig)SpringContextHolder.getBean("streamConfig");
@@ -20,7 +14,8 @@ public class PortSingleton {
 //    private  StreamConfig streamConfig;
     //存储未使用接收数据端口信息
      private List<Integer> unUsedList = new ArrayList<>();
-
+     //存储未使用发送数据端口信息
+     private Map<Integer, Channel> unUsedOutMap = new HashMap<>();
 
     //存储已使用接收端口信息、已使用接收端口绑定信息
     Map<String,String> usedMap = new HashMap<>();//键：　媒体发送者编码/媒体发送者ip+port　值：　接收ip+port
@@ -84,7 +79,25 @@ public class PortSingleton {
     public void addPort(int port){
         this.unUsedList.add(port);
     }
-
+    public void addOutPort(int port,Channel channel){
+        this.unUsedOutMap.put(port,channel);
+    }
+    public void removeOutPort(int port){
+        this.unUsedOutMap.remove(port);
+    }
+    //获取端口
+    public Integer getOutPort(){
+        Set<Integer> integers = unUsedOutMap.keySet();
+        Iterator<Integer> iterator = integers.iterator();
+        if(iterator.hasNext()){
+            return iterator.next();
+        }
+        return null;
+    }
+    //获取Ｃｈａｎｎｅｌ
+    public Channel getOutChanner(int port){
+        return unUsedOutMap.get(port);
+    }
     /**
      * 将媒体发送者端口ｉｐ和流媒体服务器接收端口ｉｐ
      * @return
