@@ -119,22 +119,22 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
         //解析ｓｄｐ获取cameraCode;
         String cameraCode = parseSDPGetCode(sdp);
         //通过cameraCode存储ip信息
-        ipMap.put(cameraCode,ip);
+        ipMap.put(callId,s);
 
         //根据摄像头ip 去取存入的数据
-         DataInfo dataInfo = PortSingleton.getInstance().getUseCodeDataMap().get(cameraCode);
+         DataSource dataInfo = PortSingleton.getInstance().getUseSecCodeDataMap().get(cameraCode);
      if(dataInfo==null){
         //如果没有
         return;
        }
       //第二次  存code 作为键  数据
-       dataInfo.setCameraIp(ip);
-       dataInfo.setCameraPort(Integer.parseInt(port));
-       PortSingleton.getInstance().getUseCodeDataMap().put(cameraCode,dataInfo);
+       dataInfo.setSourceIp(ip);
+       dataInfo.setSourcePort(Integer.parseInt(port));
+       PortSingleton.getInstance().getUseSecCodeDataMap().put(cameraCode,dataInfo);
 
         //摄像头的ipport为key  存map
         String cameraIpAndPortKey=ip+port;
-        PortSingleton.getInstance().getUseIpPortDataMap().put(cameraIpAndPortKey,dataInfo);
+        PortSingleton.getInstance().getUseSecIpPortDataMap().put(cameraIpAndPortKey,dataInfo);
 
 
         //根据cameraId获取接收流port+ip信息
@@ -169,7 +169,8 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
             String substring = subject.substring(subject.indexOf(":") + 2);
             String cameraCode = substring.substring(0, substring.indexOf(":"));
             //通过cameraCode获取cameraIP
-            String s = ipMap.get(cameraCode);
+            String s = ipMap.get(sipMessageEvent.getMessage().getCallId().getCallId());
+            //通过cameraCode获取cameraIP+port
             //根据cameraIp获取流传输对象
 //            IpAndPort ipAndPort = ipAndPortMapTcp.get(s);
 //            ipAndPort.setPush(true);
@@ -198,9 +199,9 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
         //获取流接收端口和ip地址,这里暂时写死,
         SIPRequest message = (SIPRequest) sipMessageEvent.getMessage();
         String sdp = new SDP().getV(ParseUtil.parseMessage(message.getTo().getAddress().toString()),
-                split[0],Integer.parseInt(split[1]),0,0);//构建ok消息
-//        String sdp = new SDP().getV(ParseUtil.parseMessage(message.getTo().getAddress().toString()),
-//                streamＲecConfig.getHost(),streamＲecConfig.getTcpPort(),0,0);
+        split[0],Integer.parseInt(split[1]),0,0);//构建ok消息
+//      String sdp = new SDP().getV(ParseUtil.parseMessage(message.getTo().getAddress().toString()),
+//      streamＲecConfig.getHost(),streamＲecConfig.getTcpPort(),0,0);
         SIPResponse response = message.createResponse(200);
         response.setToTag(Generate.getTag());
         response.setMessageContent(sdp.getBytes());
@@ -213,7 +214,7 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
 
         sipResponseMap.put(message.getCallId().getCallId(),response);
     }
-    //处理包含sdp的Invite信令请求消息
+        //处理包含sdp的Invite信令请求消息
     public void handleContainSdp(SipMessageEvent sipMessageEvent) throws UnsupportedEncodingException {
         // TODO 解析 SDP 取出 对方端口 以及 IP
         //第二次指令，我会给你数据接收端口地址，你回我netty的数据发送端口地址
@@ -223,6 +224,7 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
         String oldSdp = message.getMessageContent();
         String s = parseSDP(oldSdp, ip, port);
         String[] split = s.split(":");
+        //发送端目标IP port
         ip = split[0];
         port = split[1];
         String []sdpArray = oldSdp.split("\r\n");
@@ -234,7 +236,7 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
                 String subject = message.getHeader("Subject").toString();
                 String substring = subject.substring(subject.indexOf(":") + 2);
                 String cameraCode = substring.substring(0, substring.indexOf(":"));
-                String cameraIp = ipMap.get(cameraCode);
+                String cameraIp = ipMap.get(message.getCallId().getCallId());
                 //启动netty线程
                 //tcp传输数据
 //                NettyCustomerClient nettyCustomerClient = new NettyCustomerClient(ip, Integer.parseInt(port));
@@ -244,9 +246,13 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
                 //udp传输数据
                 Integer outPort = PortSingleton.getInstance().getOutPort();
                 if(outPort != null){
-                    Channel outChanner = PortSingleton.getInstance().getOutChanner(outPort);
+
+                    Channel outChannel = PortSingleton.getInstance().getOutChanner(outPort);
                     //根据ip存储流传输通道和传输端口信息
-                    ipAndPortMapUdp.put(cameraIp,new UDPIpAndPort(ip,Integer.valueOf(port),streamConfig.getIp(),outPort, outChanner));
+                   ipAndPortMapUdp.put(cameraIp,new UDPIpAndPort(ip,Integer.valueOf(port),streamConfig.getIp(),outPort, outChannel));
+                    //根据ip存储流传输通道和传输端口信息cameraIpPort
+                 //   ipAndPortMapUdp.put(cameraIpPort,new UDPIpAndPort(ip,Integer.valueOf(port),streamConfig.getIp(),outPort, outChannel));
+
                     PortSingleton.getInstance().removeOutPort(outPort);
                 }else{//端口使用完毕
                     return;
