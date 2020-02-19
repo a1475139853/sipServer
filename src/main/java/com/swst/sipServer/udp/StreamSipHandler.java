@@ -249,7 +249,12 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
 
                     Channel outChannel = PortSingleton.getInstance().getOutChanner(outPort);
                     //根据ip存储流传输通道和传输端口信息
-                   ipAndPortMapUdp.put(cameraIp,new UDPIpAndPort(ip,Integer.valueOf(port),streamConfig.getIp(),outPort, outChannel));
+                     UDPIpAndPort udpIpAndPort = new UDPIpAndPort(ip, Integer.valueOf(port), streamConfig.getIp(), outPort, outChannel);
+                    //已使用端口  设置阀值  都是new  可以不用
+                    udpIpAndPort.setThreshold(0);
+                    ipAndPortMapUdp.put(cameraIp,udpIpAndPort);
+                    //将保存信息存于portSingle
+                    PortSingleton.getInstance().getUseSendData().put(cameraIp,udpIpAndPort);
                     //根据ip存储流传输通道和传输端口信息cameraIpPort
                  //   ipAndPortMapUdp.put(cameraIpPort,new UDPIpAndPort(ip,Integer.valueOf(port),streamConfig.getIp(),outPort, outChannel));
 
@@ -282,7 +287,14 @@ public class StreamSipHandler extends SimpleChannelInboundHandler<SipMessageEven
                 if(outPort != null){
                     Channel outChanner = PortSingleton.getInstance().getOutChanner(outPort);
                     //根据ip存储流传输通道和传输端口信息
-                    historyMessage.setUdpIpAndPort(new UDPIpAndPort(ip,Integer.valueOf(port),streamConfig.getIp(),outPort, outChanner));
+                     UDPIpAndPort udpIpAndPort = new UDPIpAndPort(ip, Integer.valueOf(port), streamConfig.getIp(), outPort, outChanner);
+                    historyMessage.setUdpIpAndPort(udpIpAndPort);
+                    //将保存信息存于portSingle
+                    String cameraIp = ipMap.get(message.getCallId().getCallId());
+                     //已使用端口  设置阀值
+                    udpIpAndPort.setThreshold(0);
+                    PortSingleton.getInstance().getUseSendData().put(cameraIp,udpIpAndPort);
+
                     PortSingleton.getInstance().removeOutPort(outPort);
                 }else{//端口使用完毕
                     return;

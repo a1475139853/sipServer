@@ -3,29 +3,37 @@ package com.swst.videoRecServer;
 import com.swst.config.SpringContextHolder;
 import com.swst.config.StreamConfig;
 import com.swst.domain.DataInfo;
+import com.swst.domain.DataSource;
+import com.swst.domain.UDPIpAndPort;
 import io.netty.channel.Channel;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+@Component
 public class PortSingleton {
     private StreamConfig streamConfig = (StreamConfig)SpringContextHolder.getBean("streamConfig");
     private static volatile PortSingleton ourInstance = null;
-//    @Autowired(required = false)
-//    private  StreamConfig streamConfig;
+    //    @Autowired(required = false)
+    //    private  StreamConfig streamConfig;
     //存储未使用接收数据端口信息
-     private List<Integer> unUsedList = new ArrayList<>();
-     //存储未使用发送数据端口信息
-     private Map<Integer, Channel> unUsedOutMap = new HashMap<>();
+    private List<Integer> unUsedList = new ArrayList<>();
+    //存储未使用发送数据端口信息
+    private Map<Integer, Channel> unUsedOutMap = new HashMap<>();
 
     //存储已使用接收端口信息、已使用接收端口绑定信息
     Map<String,String> usedMap = new HashMap<>();//键：　媒体发送者编码/媒体发送者ip+port　值：　接收ip+port
 
 
+     //中间发送已使用端口
+     private Map<String, UDPIpAndPort> useSendData=new HashMap<>();
+
+
     //  以code 为键  存储已经使用的 接收端 ip 端口  摄像头 ip
-    private  Map<String , DataInfo> useCodeDataMap=new HashMap<>();
+    private  Map<String , DataSource> useSecCodeDataMap=new HashMap<>();
 
     // 以 摄像头ip+端口作为值 存储已经使用的 接收端 ip 端口  摄像头 ip
-    private  Map<String ,DataInfo> useIpPortDataMap=new HashMap<>();
+    private  Map<String ,DataSource> useSecIpPortDataMap=new HashMap<>();
 
     public Map<Map<Integer, String>,Map<Integer, String>> usedStreamReceiveBindMap = new HashMap<>(); // 保存接收流已用port+ip和媒体流发送者发送流port+ip关系
     public Map<String,Map<Integer,String>> usedStreamReceiveMap = new HashMap<>();//绑定媒体发送者设备与流接收端口ｉｐ信息
@@ -62,16 +70,14 @@ public class PortSingleton {
             Integer remove = unUsedList.remove(0);
             String ip = streamConfig.getIp();
             usedMap.put(cameraCode,ip+":"+port);
-           // 接收摄像头流 的接收端 的code
-
+            // 接收摄像头流 的接收端 的code
             String localcode = streamConfig.getCode();
-            DataInfo dataInfo = new DataInfo();
-            dataInfo.setReceiveCode(localcode);
-            dataInfo.setCameraCode(cameraCode);
-             dataInfo.setReceivePort(port);
-             dataInfo.setReceiveIp(ip);
-             useCodeDataMap.put(cameraCode,dataInfo);
-
+            DataSource dataInfo = new DataSource();
+            dataInfo.setLocalCode(localcode);
+            dataInfo.setSourceCode(cameraCode);
+            dataInfo.setLocalRecPort(port);
+            dataInfo.setLocalIp(ip);
+            useSecCodeDataMap.put(cameraCode,dataInfo);
             return ip+":"+port;
         }
         return null;
@@ -144,20 +150,45 @@ public class PortSingleton {
         return "";
     }
 
-    public Map<String, DataInfo> getUseCodeDataMap() {
-        return useCodeDataMap;
+
+    /**
+     * 重置接收段阀值
+     * @param ipPort   (中转接收段ipPort)
+     */
+    public  void resetRecThreshold(String  ipPort){
+         DataSource dataInfo = this.useSecIpPortDataMap.get(ipPort);
+           if(dataInfo!=null){
+               String receiveCode = dataInfo.getLocalCode();
+               dataInfo.setThreshold(0);
+               this.useSecIpPortDataMap.put(ipPort,dataInfo);
+                this.useSecCodeDataMap.put(receiveCode,dataInfo);
+           }
+
     }
 
-    public void setUseCodeDataMap(Map<String, DataInfo> useCodeDataMap) {
-        this.useCodeDataMap = useCodeDataMap;
+    public Map<Integer, Channel> getUnUsedOutMap() {
+        return unUsedOutMap;
     }
 
-    public Map<String, DataInfo> getUseIpPortDataMap() {
-        return useIpPortDataMap;
+    public void setUnUsedOutMap(Map<Integer, Channel> unUsedOutMap) {
+        this.unUsedOutMap = unUsedOutMap;
     }
 
-    public void setUseIpPortDataMap(Map<String, DataInfo> useIpPortDataMap) {
-        this.useIpPortDataMap = useIpPortDataMap;
+    public Map<String, DataSource> getUseSecCodeDataMap() {
+        return useSecCodeDataMap;
+    }
+
+    public void setUseCodeDataMap(Map<String, DataSource> useSecCodeDataMap) {
+        this.useSecCodeDataMap = useSecCodeDataMap;
+    }
+
+    public Map<String, DataSource> getUseSecIpPortDataMap() {
+
+        return useSecIpPortDataMap;
+    }
+
+    public void setUseIpPortDataMap(Map<String, DataSource> useSecIpPortDataMap) {
+        this.useSecIpPortDataMap = useSecIpPortDataMap;
     }
 
     public List<Integer> getUnUsedList() {
@@ -166,5 +197,13 @@ public class PortSingleton {
 
     public void setUnUsedList(List<Integer> unUsedList) {
         this.unUsedList = unUsedList;
+    }
+
+    public Map<String, UDPIpAndPort> getUseSendData() {
+        return useSendData;
+    }
+
+    public void setUseSendData(Map<String, UDPIpAndPort> useSendData) {
+        this.useSendData = useSendData;
     }
 }

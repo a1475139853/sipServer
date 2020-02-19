@@ -50,30 +50,42 @@ public class VideoHandle extends SimpleChannelInboundHandler<DatagramPacket> {
             System.out.println();
             a = false;
         }
+        //        System.out.println("--------------------");
 
-
-
-//        System.out.println("--------------------");
-
-        rtpH264Parse.handleNalHeader(bytes1,ip);
-        UDPIpAndPort ipAndPort = StreamSipHandler.ipAndPortMapUdp.get(ip);
+//        rtpH264Parse.handleNalHeader(bytes1,ip);
+        String ipPort=ip+port;
+       // UDPIpAndPort ipAndPort = StreamSipHandler.ipAndPortMapUdp.get(ip);
+        UDPIpAndPort ipAndPort = StreamSipHandler.ipAndPortMapUdp.get(ip+":"+port);
         if (ipAndPort != null && ipAndPort.isPush()) {
-            InetSocketAddress inetSocketAddress = new InetSocketAddress(ipAndPort.getRecIp(),ipAndPort.getRecPort());
+            //设置阀值
+             UDPIpAndPort udpIpAndPort = PortSingleton.getInstance().getUseSendData().get(ip + port);
+                      if(udpIpAndPort!=null){
+                          udpIpAndPort.setThreshold(0);
+                          PortSingleton.getInstance().getUseSendData().put(ip + port,udpIpAndPort);
+                      }
+             InetSocketAddress inetSocketAddress = new InetSocketAddress(ipAndPort.getRecIp(),ipAndPort.getRecPort());
             DatagramPacket datagramPacket = new DatagramPacket(Unpooled.wrappedBuffer(bytes1), inetSocketAddress);
             ipAndPort.getChannel().writeAndFlush(datagramPacket);
+           //发送数据  设置阀值为0
+            ipAndPort.setThreshold(0);
+
+
+
         }
 
-          //接收数据  将阀值置   置空0
-          String  str=ip+port;
-         Map<String, DataInfo> useCodeDataMap = PortSingleton.getInstance().getUseCodeDataMap();
-         Map<String, DataInfo> useIpPortDataMap = PortSingleton.getInstance().getUseIpPortDataMap();
-         DataInfo dataInfo = useIpPortDataMap.get(str);
-         if(dataInfo!=null){
-             String cameraCode = dataInfo.getCameraCode();
-             dataInfo.setThreshold(0);
-             useIpPortDataMap.put(str,dataInfo);
-             useCodeDataMap.put(cameraCode,dataInfo);
-         }
+         //接收数据  将接收端阀值置   置0
+         String  str=ip+port;
+
+         PortSingleton.getInstance().resetRecThreshold(str);
+//         Map<String, DataInfo> useCodeDataMap = PortSingleton.getInstance().getUseCodeDataMap();
+//         Map<String, DataInfo> useIpPortDataMap = PortSingleton.getInstance().getUseIpPortDataMap();
+//         DataInfo dataInfo = useIpPortDataMap.get(str);
+//         if(dataInfo!=null){
+//             String cameraCode = dataInfo.getCameraCode();
+//             dataInfo.setThreshold(0);
+//             useIpPortDataMap.put(str,dataInfo);
+//             useCodeDataMap.put(cameraCode,dataInfo);
+//         }
 
     }
 }

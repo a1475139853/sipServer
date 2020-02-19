@@ -1,6 +1,8 @@
 package com.swst.utils;
 
 import com.swst.domain.DataInfo;
+import com.swst.domain.DataSource;
+import com.swst.domain.UDPIpAndPort;
 import com.swst.videoRecServer.PortSingleton;
 
 import java.util.*;
@@ -14,8 +16,8 @@ import java.util.*;
 
 
 public class ThresholdThread implements Runnable {
-    Map<String, DataInfo> useIpPortDataMap = null;
-    Map<String, DataInfo> useCodeDataMap = null;
+    Map<String, DataSource> useSecIpPortDataMap = null;
+    Map<String, DataSource> useSecCodeDataMap = null;
 
 
     private int time;
@@ -29,48 +31,79 @@ public class ThresholdThread implements Runnable {
     public void run() {
         while (true) {
             try {
-              Thread.sleep(2000);
-              useCodeDataMap = PortSingleton.getInstance().getUseCodeDataMap();
-            if (useCodeDataMap == null || useCodeDataMap.keySet().size() == 0) {
-                continue;
-            }
-            useIpPortDataMap = PortSingleton.getInstance().getUseIpPortDataMap();
-            //需要移除的key
-            List<String> removeList = new ArrayList<>();
-//           unUsedList = PortSingleton.getInstance().getUnUsedList();
-            Set<String> strings = useCodeDataMap.keySet();
-            DataInfo daIn = null;
-            for (String str : strings) {
-                 daIn = useCodeDataMap.get(str);
-                String key = daIn.getCameraIp() + daIn.getCameraPort();
+                Thread.sleep(2000);
+                useSecCodeDataMap = PortSingleton.getInstance().getUseSecCodeDataMap();
+                Map<String, UDPIpAndPort> useSendData = PortSingleton.getInstance().getUseSendData();
 
-              //  daIn = useCodeDataMap.get(str);
-                if (daIn.getThreshold() < time) {
-                    daIn.setThreshold(daIn.getThreshold() + 2);
-                    useIpPortDataMap.put(key, daIn);
-                    useCodeDataMap.put(str, daIn);
-                } else {
-                    useIpPortDataMap.remove(key);
-                    removeList.add(str);
+              //中间 接收端口
+                if (useSecCodeDataMap != null && useSecCodeDataMap.keySet().size() != 0) {
 
+
+                    useSecIpPortDataMap = PortSingleton.getInstance().getUseSecIpPortDataMap();
+                    //需要移除的key
+                    List<String> removeList = new ArrayList<>();
+        //           unUsedList = PortSingleton.getInstance().getUnUsedList();
+                    Set<String> strings = useSecCodeDataMap.keySet();
+                    DataSource daIn = null;
+                    for (String str : strings) {
+                        daIn = useSecCodeDataMap.get(str);
+                        String key = daIn.getSourceIp() + daIn.getSourcePort();
+
+                        //  daIn = useCodeDataMap.get(str);
+                        if (daIn.getThreshold() < time) {
+                            daIn.setThreshold(daIn.getThreshold() + 2);
+                            useSecIpPortDataMap.put(key, daIn);
+                            useSecCodeDataMap.put(str, daIn);
+                        } else {
+                            useSecIpPortDataMap.remove(key);
+                            //返还过期接收端端口
+                            PortSingleton.getInstance().getUnUsedList().add(daIn.getLocalRecPort());
+                            removeList.add(str);
+
+                        }
+                    }
+
+
+                    if (removeList.size() > 0) {
+                        for (String remove : removeList) {
+                            useSecCodeDataMap.remove(remove);
+                        }
+                    }
                 }
-            }
+
+                //中间 发送端端口检查
+                 if(useSendData!=null&&useSendData.keySet().size()>0){
+                      Set<String> strings = useSendData.keySet();
+                       List<String> remove =new ArrayList<>();
+                      for(String str : strings){
+                           UDPIpAndPort udpIpAndPort = useSendData.get(str);
+                            if(udpIpAndPort.getThreshold()>8){
+
+                                  remove.add(str);
+                                  //归还 超过时间的发送端端口
+                                  PortSingleton.getInstance().getUnUsedOutMap().put(udpIpAndPort.getRecPort(),udpIpAndPort.getChannel());
+                            }else {
+                                udpIpAndPort.setThreshold(udpIpAndPort.getThreshold()+2);
+                                PortSingleton.getInstance().getUseSendData().put(str,udpIpAndPort);
+                            }
+
+                      }
+                     if(remove.size()>0){
+                         for (String reString : remove){
+                             //移除
+                             PortSingleton.getInstance().getUseSendData().remove(reString);
+                         }
+                     }
 
 
-            if (removeList.size() > 0) {
 
-                for (String remove : removeList) {
-                    Integer receivePort = useCodeDataMap.get(remove).getReceivePort();
-                    System.out.println(PortSingleton.getInstance().getUnUsedList().size());
-                    PortSingleton.getInstance().getUnUsedList().add(receivePort);
-                    System.out.println(PortSingleton.getInstance().getUnUsedList().size());
-                    useCodeDataMap.remove(remove);
-                    System.out.println(PortSingleton.getInstance().getUnUsedList().size());
 
-                }
-            }
-            }catch (Exception e) {
-              e.printStackTrace();
+                 }
+
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

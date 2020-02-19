@@ -2,6 +2,7 @@ package com.swst.sipServer.tcp;
 
 
 import com.swst.domain.DataInfo;
+import com.swst.domain.DataSource;
 import com.swst.rtphandle.RtpH264Parse;
 import com.swst.videoRecServer.PortSingleton;
 import io.netty.buffer.ByteBuf;
@@ -22,8 +23,8 @@ import java.util.Map;
 public class TcpSipHandle extends ChannelInboundHandlerAdapter {
 
     private RtpH264Parse rtpH264Parse = new RtpH264Parse();
-    File file = new File("/root/Desktop/test.ts");
-    FileOutputStream out = new FileOutputStream(file);
+//    File file = new File("/root/Desktop/test.ts");
+//    FileOutputStream out = new FileOutputStream(file);
 
     public TcpSipHandle() throws FileNotFoundException {
     }
@@ -48,21 +49,22 @@ public class TcpSipHandle extends ChannelInboundHandlerAdapter {
         InetSocketAddress inetSocketAddress = (InetSocketAddress) ctx.channel().remoteAddress();
         String address = inetSocketAddress.getAddress().getHostAddress();
         int port = inetSocketAddress.getPort();
-        out.write(barray);
-        out.flush();
+//        out.write(barray);
+//        out.flush();
 //        rtpH264Parse.handleNalHeader(barray,address);
 
         //接收数据  将阀值置   置空0
         String  str=address+port;
-        Map<String, DataInfo> useCodeDataMap = PortSingleton.getInstance().getUseCodeDataMap();
-        Map<String, DataInfo> useIpPortDataMap = PortSingleton.getInstance().getUseIpPortDataMap();
-        DataInfo dataInfo = useIpPortDataMap.get(str);
-        if(dataInfo!=null){
-            String cameraCode = dataInfo.getCameraCode();
-            dataInfo.setThreshold(0);
-            useIpPortDataMap.put(str,dataInfo);
-            useCodeDataMap.put(cameraCode,dataInfo);
-        }
+               PortSingleton.getInstance().resetRecThreshold(str);
+//        Map<String, DataSource> useCodeDataMap = PortSingleton.getInstance().getUseSecCodeDataMap();
+//        Map<String, DataSource> useIpPortDataMap = PortSingleton.getInstance().getUseSecIpPortDataMap();
+//        DataSource dataInfo = useIpPortDataMap.get(str);
+//        if(dataInfo!=null){
+//            String sourceCode = dataInfo.getSourceCode();
+//            dataInfo.setThreshold(0);
+//            useIpPortDataMap.put(str,dataInfo);
+//            useCodeDataMap.put(sourceCode,dataInfo);
+//        }
     }
 
 

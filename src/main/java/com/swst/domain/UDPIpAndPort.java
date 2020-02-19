@@ -17,6 +17,12 @@ public class UDPIpAndPort {
     private int recPort;
     private Channel channel;
     private boolean push;
+
+    /**
+     * 阀值  (每一秒加一  大于8 秒就默认该连接断开)
+     *
+     */
+    private int  threshold;
     public UDPIpAndPort(String recIp,int recPort,String ip,int port,Channel channel){
         this.recIp = recIp;
         this.recPort =recPort;
