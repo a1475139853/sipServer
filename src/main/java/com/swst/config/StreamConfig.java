@@ -1,5 +1,6 @@
 package com.swst.config;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -10,32 +11,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConfigurationProperties(prefix = "stream-server")
+@Data
 public class StreamConfig {
     private String ip;
     private int port;
     private String code;
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
-    }
+    private int recPortStart;
+    private int recPortEnd;
+    private int outPortStart;
+    private int outPortEnd;
 }

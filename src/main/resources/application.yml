@@ -79,6 +79,10 @@ stream-server:
   ip: "192.168.6.201"
   port: 5062
   code: "60021111000002"
+  rec-port-start: 25061
+  rec-port-end: 25069
+  out_port-start: 30061
+  out-port-end: 30069
 
 stream-rec:
   host: "192.168.6.201"

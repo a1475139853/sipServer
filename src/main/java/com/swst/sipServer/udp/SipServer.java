@@ -1,5 +1,7 @@
 package com.swst.sipServer.udp;
 
+import com.swst.config.SpringContextHolder;
+import com.swst.config.StreamConfig;
 import com.swst.sipServer.codes.SipMessageDatagramDecoder;
 import com.swst.sipServer.codes.SipMessageEncoder;
 import com.swst.sipServer.tcp.TcpSipServer;
@@ -9,8 +11,11 @@ import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioDatagramChannel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.stream.Stream;
 
 /**
  * @Auther: fregun
@@ -19,6 +24,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SipServer implements CommandLineRunner {
+
+    private StreamConfig streamConfig = (StreamConfig) SpringContextHolder.getBean("streamConfig");
     public static boolean b = true;
     
     public void run(String... args){
@@ -32,7 +39,7 @@ public class SipServer implements CommandLineRunner {
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    new VideoServer(25061,25069).start();
+                    new VideoServer(streamConfig.getRecPortStart(),streamConfig.getRecPortEnd()).start();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -41,7 +48,7 @@ public class SipServer implements CommandLineRunner {
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    new VideoOutServer(30061,30069).start();
+                    new VideoOutServer(streamConfig.getOutPortStart(),streamConfig.getOutPortEnd()).start();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -91,7 +98,7 @@ public class SipServer implements CommandLineRunner {
                         }
 
                     });
-            ChannelFuture future = bootstrap.bind("192.168.6.176",5062).sync();
+            ChannelFuture future = bootstrap.bind(streamConfig.getIp(),streamConfig.getPort()).sync();
             System.out.println("5062 netty 启动完成");
             //启动后向sip服务器进行注册
 /*

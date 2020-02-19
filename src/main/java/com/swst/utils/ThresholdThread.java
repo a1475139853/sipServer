@@ -4,6 +4,7 @@ import com.swst.domain.DataInfo;
 import com.swst.domain.DataSource;
 import com.swst.domain.UDPIpAndPort;
 import com.swst.videoRecServer.PortSingleton;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
